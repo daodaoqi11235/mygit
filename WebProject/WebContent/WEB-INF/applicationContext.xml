@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- 定义国际化消息 -->
+
+	
+	<!--  配置数据源 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/webproject</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>1123581321</value>
+		</property>
+	</bean>	
+	<!-- 配置Hibernate -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/hibernate/beans/Expert.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 配置事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>	
+	
+	<!-- 定义视图 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.InternalResourceView
+			</value>
+		</property>
+		<!-- JSP都放在/目录下 -->
+		<property name="prefix">
+			<value>/jsp/</value>
+		</property>
+		<!-- JSP页面的后缀都四.JSP -->
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>	
+
+<!-- 定义验证码类 -->
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+        <property name="config">  
+            <bean class="com.google.code.kaptcha.util.Config">  
+                <constructor-arg>  
+                    <props>  
+                        <prop key="kaptcha.border">no</prop>  
+                        <prop key="kaptcha.border.color">105,179,90</prop>  
+                        <prop key="kaptcha.textproducer.font.color">red</prop>  
+                        <prop key="kaptcha.image.width">80</prop>  
+                        <prop key="kaptcha.textproducer.font.size">30</prop>  
+                        <prop key="kaptcha.image.height">40</prop>  
+                        <prop key="kaptcha.session.key">code</prop>  
+                        <prop key="kaptcha.textproducer.char.length">4</prop>  
+                    </props>  
+                </constructor-arg>  
+            </bean>  
+        </property>  
+    </bean>  
+
+	<bean id="KaptchaAction"
+			class="com.kaptcha.CaptchaImageCreateController">
+	 		<property name="captchaProducer" ref="captchaProducer"/> 
+	</bean>
+
+	<bean id="kaptchaMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/kaptcha.do">KaptchaAction</prop>
+			</props>
+		</property>
+	</bean> 
+	
+	<!--登陆监听器  -->
+	<bean id="loginInterceptor" class="com.interceptor.LoginInterceptor"></bean>
+	
+	<!--登陆  -->
+	<bean id="expertDAO" class="com.hibernate.dao.ExpertDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ExpertDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="expertDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="loginMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/login.do">LoginAction</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="LoginAction"
+			class="com.login.LoginAction">
+			<property name="commandClass">
+				<value>com.login.LoginForm</value>
+			</property>
+			<!-- 指定DAO类 -->
+			<property name="expertDAO">
+			<ref local="expertDAO" />
+			</property>
+			<!-- 指定验证类 -->
+
+			<!-- 指定失败要返回的页面 -->
+			<property name="formView">
+				<value>login</value>    
+			</property>
+			<!-- 指定成功要返回的页面 -->
+			<property name="successView">
+				<value>welcome</value>
+			</property>
+	</bean>
+</beans>

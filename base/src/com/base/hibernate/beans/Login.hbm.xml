@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-15 16:00:37 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.base.hibernate.beans.Login" table="login">
+        <id name="loginId" type="java.lang.Integer">
+            <column name="LoginID" />
+            <generator class="identity" />
+        </id>
+        <property name="nickname" type="string">
+            <column name="Nickname" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

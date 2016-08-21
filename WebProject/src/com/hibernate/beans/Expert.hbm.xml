@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-21 18:32:51 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Expert" table="expert" >
+        <id name="expertId" type="java.lang.Integer">
+            <column name="ExpertID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="Age" />
+        </property>
+        <property name="company" type="string">
+            <column name="Company" />
+        </property>
+        <property name="title" type="string">
+            <column name="Title" />
+        </property>
+        <property name="major" type="string">
+            <column name="Major" />
+        </property>
+        <property name="education" type="string">
+            <column name="Education" />
+        </property>
+        <property name="cellphone" type="string">
+            <column name="Cellphone" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="Telephone" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" />
+        </property>
+        <property name="achievement" type="string">
+            <column name="Achievement" length="65535" />
+        </property>
+        <property name="type" type="string">
+            <column name="Type" />
+        </property>
+        <property name="loginName" type="string">
+            <column name="LoginName" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" not-null="true" />
+        </property>
+        <property name="roleId" type="int">
+            <column name="RoleID" not-null="true" />
+        </property>
+        <property name="field1" type="string">
+            <column name="Field1" />
+        </property>
+        <property name="field2" type="string">
+            <column name="Field2" />
+        </property>
+    </class>
+</hibernate-mapping>

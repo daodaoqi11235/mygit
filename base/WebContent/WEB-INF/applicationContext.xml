@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+"http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	<!-- 定义国际化消息 -->
+
+	
+	<!--  配置数据源 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>jdbc:mysql://localhost:3306/test</value>
+		</property>
+		<property name="username">
+			<value>root</value>
+		</property>
+		<property name="password">
+			<value>1123581321</value>
+		</property>
+	</bean>	
+	<!-- 配置Hibernate -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/base/hibernate/beans/User.hbm.xml</value>
+				<value>com/base/hibernate/beans/Login.hbm.xml</value>
+				<value>com/base/hibernate/beans/Fujian.hbm.xml</value>
+				<value>com/base/hibernate/beans/Enum.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 配置事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>	
+	<!-- 定义DAO -->
+	<bean id="userDAO" class="com.base.hibernate.dao.UserDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	
+	<bean id="loginDAO" class="com.base.hibernate.dao.LoginDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>		
+	
+	<bean id="fujianDAO" class="com.base.hibernate.dao.FujianDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>	
+		<bean id="enumDAO" class="com.base.hibernate.dao.EnumDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>	
+	<!-- 定义DAO代理 -->
+	<bean id="UserDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="userDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="LoginDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="loginDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="FujianDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="fujianDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+		<bean id="enumDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="enumDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 定义视图 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>
+				org.springframework.web.servlet.view.InternalResourceView
+			</value>
+		</property>
+		<!-- JSP都放在/目录下 -->
+		<property name="prefix">
+			<value>/</value>
+		</property>
+		<!-- JSP页面的后缀都四.JSP -->
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>	
+	<!-- 定义映射 ，定义一个监听器-->
+
+			
+	
+	<bean id="CaptchaInter" class="com.base.interceptor.CaptchaInter"></bean>
+
+	<bean id="loginMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/login.do">LoginAction</prop>
+			</props>
+		</property>
+		  		<property name="interceptors">
+			<list>
+				<ref bean="CaptchaInter"></ref>
+			</list>
+		</property> 
+	</bean>
+	
+	<bean id="welcomeMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/welcome.do">WelAction</prop>
+			</props>
+		</property>
+ 		  		<property name="interceptors">
+			<list>
+				<ref bean="CaptchaInter"></ref>
+			</list>
+		</property> 
+	</bean>
+
+	<bean id="wordMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/word.do">WordAction</prop>
+			</props>
+		</property>
+ 		<property name="interceptors">
+			<list>
+				<ref bean="CaptchaInter"></ref>
+			</list>
+		</property> 
+	</bean>
+
+
+	<!---定义Action-->
+
+	<bean id="LoginAction"
+			class="com.base.spring.actions.LoginAction">
+			<property name="commandClass">
+				<value>com.base.spring.forms.LoginForm</value>
+			</property>
+			<!-- 指定DAO类 -->
+			<property name="loginDAO">
+			<ref local="loginDAO" />
+			</property>
+			<!-- 指定验证类 -->
+
+			<!-- 指定失败要返回的页面 -->
+			<property name="formView">
+				<value>login</value>    
+			</property>
+			<!-- 指定成功要返回的页面 -->
+			<property name="successView">
+				<value>welcome</value>
+			</property>
+	</bean>
+	
+	<bean id="WelAction"
+			class="com.base.spring.actions.WelAction">
+			<property name="commandClass">
+				<value>com.base.spring.forms.LoginForm</value>
+			</property>
+			<!-- 指定DAO类 -->
+
+			<!-- 指定验证类 -->
+
+			<!-- 指定失败要返回的页面 -->
+			<property name="formView">
+				<value>login</value>    
+			</property>
+			<!-- 指定成功要返回的页面 -->
+			<property name="successView">
+				<value>welcome</value>
+			</property>
+	</bean>
+	
+	<bean id="WordAction"
+			class="com.base.spring.actions.WordAction">
+			<property name="commandClass">
+				<value>com.base.spring.forms.WordForm</value>
+			</property>
+			<!-- 指定DAO类 -->
+			<!-- 指定验证类 -->
+			<!-- 指定失败要返回的页面 -->
+			<!-- 指定成功要返回的页面 -->
+			<property name="successView">
+				<value>login</value>
+			</property>
+	</bean>
+
+
+
+<!-- 定义验证码类 -->
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
+        <property name="config">  
+            <bean class="com.google.code.kaptcha.util.Config">  
+                <constructor-arg>  
+                    <props>  
+                        <prop key="kaptcha.border">no</prop>  
+                        <prop key="kaptcha.border.color">105,179,90</prop>  
+                        <prop key="kaptcha.textproducer.font.color">red</prop>  
+                        <prop key="kaptcha.image.width">80</prop>  
+                        <prop key="kaptcha.textproducer.font.size">30</prop>  
+                        <prop key="kaptcha.image.height">40</prop>  
+                        <prop key="kaptcha.session.key">code</prop>  
+                        <prop key="kaptcha.textproducer.char.length">4</prop>  
+                    </props>  
+                </constructor-arg>  
+            </bean>  
+        </property>  
+    </bean>  
+
+	<bean id="KaptchaAction"
+			class="com.base.kaptcha.CaptchaImageCreateController">
+	 		<property name="captchaProducer" ref="captchaProducer"/> 
+	</bean>
+
+	<bean id="kaptchaMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/kaptcha.do">KaptchaAction</prop>
+			</props>
+		</property>
+		<property name="interceptors">
+			<list>
+				<ref bean="CaptchaInter"></ref>
+			</list>
+		</property> 
+	</bean> 
+<!-- 上传文件 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>   
+    </bean>
+  	<bean id="uploadMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/upload.do">UploadAction</prop>
+			</props>
+			</property>
+	</bean>
+	
+	<bean id="UploadAction"
+			class="com.base.upanddown.UploadAction">
+			<property name="commandClass">
+				<value>com.base.spring.forms.UploadForm</value>
+			</property>		
+			<property name="fjDAO">
+			<ref local="fujianDAO" />
+			</property>
+			<property name="successView">
+				<value>login</value>
+			</property>
+	</bean>	  
+ <!--下载文件  -->
+  	<bean id="downloadMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/download.do">DownloadAction</prop>
+			</props>
+			</property>
+	</bean>
+	
+	<bean id="DownloadAction"
+			class="com.base.upanddown.DownloadAction">
+			<property name="commandClass">
+				<value>com.base.spring.forms.UploadForm</value>
+			</property>		
+			<property name="fjDAO">
+			<ref local="fujianDAO" />
+			</property>
+			<property name="successView">
+				<value>login</value>
+			</property>
+	</bean>	
+	<!--枚举  -->
+	  	<bean id="enumMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/enum.do">EnumAction</prop>
+			</props>
+			</property>
+	</bean>
+	
+	<bean id="EnumAction"
+			class="com.base.spring.actions.EnumAction">
+			<property name="commandClass">
+				<value>com.base.spring.forms.EnumForm</value>
+			</property>		
+			<property name="enumDAO">
+			<ref local="enumDAO" />
+			</property>
+			<property name="successView">
+				<value>login</value>
+			</property>
+	</bean>	
+	<!--combobox  -->
+	<bean id="comboboxMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/combo.do">ComboAction</prop>
+			</props>
+			</property>
+	</bean>
+	
+	<bean id="ComboAction"
+			class="com.base.spring.actions.ComboAction">
+	</bean>	
+</beans>
