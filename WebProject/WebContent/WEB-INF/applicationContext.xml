@@ -31,6 +31,10 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/hibernate/beans/Expert.hbm.xml</value>
+				<value>com/hibernate/beans/Administrator.hbm.xml</value>
+				<value>com/hibernate/beans/Enterprise.hbm.xml</value>
+				<value>com/hibernate/beans/Government.hbm.xml</value>
+				<value>com/hibernate/beans/Maker.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -126,6 +130,86 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="administratorDAO" class="com.hibernate.dao.AdministratorDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="AdministratorDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="administratorDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="enterpriseDAO" class="com.hibernate.dao.EnterpriseDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="EnterpriseDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="enterpriseDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="governmentDAO" class="com.hibernate.dao.GovernmentDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="GovernmentDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="governmentDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="makerDAO" class="com.hibernate.dao.MakerDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MakerDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="makerDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
 	<bean id="loginMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -143,6 +227,15 @@
 			<property name="expertDAO">
 			<ref local="expertDAO" />
 			</property>
+			<property name="enterpriseDAO">
+			<ref local="enterpriseDAO" />
+			</property>
+			<property name="makerDAO">
+			<ref local="makerDAO" />
+			</property>
+			<property name="governmentDAO">
+			<ref local="governmentDAO" />
+			</property>
 			<!-- 指定验证类 -->
 
 			<!-- 指定失败要返回的页面 -->
@@ -150,8 +243,20 @@
 				<value>login</value>    
 			</property>
 			<!-- 指定成功要返回的页面 -->
-			<property name="successView">
+<!-- 			<property name="adminView">
 				<value>welcome</value>
 			</property>
+			<property name="expertView">
+				<value>welcome</value>
+			</property>
+			<property name="makerView">
+				<value>welcome</value>
+			</property>
+			<property name="enterpriseView">
+				<value>welcome</value>
+			</property>
+			<property name="governmentView">
+				<value>welcome</value>
+			</property> -->
 	</bean>
 </beans>

@@ -10,16 +10,68 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 
 
 
+
+
+
+
 import com.google.code.kaptcha.Constants;
+import com.hibernate.dao.AdministratorDAO;
+import com.hibernate.dao.EnterpriseDAO;
 import com.hibernate.dao.ExpertDAO;
+import com.hibernate.dao.GovernmentDAO;
+import com.hibernate.dao.MakerDAO;
 
 
 public class LoginAction extends SimpleFormController {
 	
 	ExpertDAO expertDAO;
+	MakerDAO makerDAO;
+	public MakerDAO getMakerDAO() {
+		return makerDAO;
+	}
 
 
-	
+
+	public void setMakerDAO(MakerDAO makerDAO) {
+		this.makerDAO = makerDAO;
+	}
+
+
+
+	EnterpriseDAO enterpriseDAO;
+	GovernmentDAO governmentDAO;
+
+
+
+
+
+
+
+
+	public EnterpriseDAO getEnterpriseDAO() {
+		return enterpriseDAO;
+	}
+
+
+
+	public void setEnterpriseDAO(EnterpriseDAO enterpriseDAO) {
+		this.enterpriseDAO = enterpriseDAO;
+	}
+
+
+
+	public GovernmentDAO getGovernmentDAO() {
+		return governmentDAO;
+	}
+
+
+
+	public void setGovernmentDAO(GovernmentDAO governmentDAO) {
+		this.governmentDAO = governmentDAO;
+	}
+
+
+
 	public ExpertDAO getExpertDAO() {
 		return expertDAO;
 	}
@@ -44,8 +96,17 @@ public class LoginAction extends SimpleFormController {
 				request.getSession().setAttribute("isExist","2");
 				return new ModelAndView(getFormView());				
 			}
-			if(expertDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
-				return new ModelAndView(getSuccessView());
+			if(loginForm.getRole().equals("expert")&&expertDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
+				return new ModelAndView("welcome");
+			}
+			else if(loginForm.getRole().equals("maker")&&makerDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
+				return new ModelAndView("welcome");
+			}
+			else if(loginForm.getRole().equals("enterprise")&&enterpriseDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
+				return new ModelAndView("welcome");
+			}
+			else if(loginForm.getRole().equals("government")&&governmentDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
+				return new ModelAndView("welcome");
 			}
 			else{
 				request.getSession().setAttribute("isExist","1");

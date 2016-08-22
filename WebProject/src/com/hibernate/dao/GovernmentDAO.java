@@ -6,22 +6,19 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
+
+
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import com.hibernate.beans.Expert;
+import com.hibernate.beans.Government;
 
-
-
-public class ExpertDAO extends HibernateDaoSupport implements IExpertDAO{
-	/* (non-Javadoc)
-	 * @see com.hibernate.dao.IExpertDAO#isValid(java.lang.String, java.lang.String)
-	 */
+public class GovernmentDAO extends HibernateDaoSupport{
 	public boolean isValid(final String username, final String password) {
 		@SuppressWarnings("rawtypes")
 		List list = (List) getHibernateTemplate().execute(new HibernateCallback() {
 			public Object doInHibernate(Session session)
 					throws HibernateException {
-				List result = session.createCriteria(Expert.class).add(
+				List result = session.createCriteria(Government.class).add(
 						Restrictions.eq("loginName", username)).add(
 						Restrictions.eq("password", password)).list();
 				return result;

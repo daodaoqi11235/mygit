@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-22 10:31:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Government" table="government">
+        <id name="governmentId" type="java.lang.Integer">
+            <column name="GovernmentID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="government" class="com.hibernate.beans.Government" fetch="select">
+            <column name="ParentID" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="Name" />
+        </property>
+        <property name="loginName" type="string">
+            <column name="LoginName" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" />
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" />
+        </property>
+        <property name="contact" type="string">
+            <column name="Contact" />
+        </property>
+        <property name="roleId" type="java.lang.Integer">
+            <column name="RoleID" />
+        </property>
+        <set name="governments" table="government" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ParentID" />
+            </key>
+            <one-to-many class="com.hibernate.beans.Government" />
+        </set>
+    </class>
+</hibernate-mapping>

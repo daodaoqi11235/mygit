@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-22 10:31:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Maker" table="maker">
+        <id name="makerId" type="java.lang.Integer">
+            <column name="MakerID" />
+            <generator class="identity" />
+        </id>
+        <property name="loginName" type="string">
+            <column name="LoginName" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" />
+        </property>
+        <property name="contact" type="string">
+            <column name="Contact" />
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" />
+        </property>
+        <property name="team" type="string">
+            <column name="Team" />
+        </property>
+        <property name="address" type="string">
+            <column name="Address" />
+        </property>
+        <property name="teamIntro" type="string">
+            <column name="TeamIntro" length="65535" />
+        </property>
+        <property name="achievement" type="string">
+            <column name="Achievement" length="65535" />
+        </property>
+        <property name="roleId" type="int">
+            <column name="RoleID" not-null="true" />
+        </property>
+        <property name="field1" type="string">
+            <column name="Field1" />
+        </property>
+        <property name="field2" type="string">
+            <column name="Field2" />
+        </property>
+    </class>
+</hibernate-mapping>

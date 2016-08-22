@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-22 10:31:49 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Enterprise" table="enterprise" >
+        <id name="enterpriseId" type="java.lang.Integer">
+            <column name="EnterpriseID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="Name" />
+        </property>
+        <property name="legalPerson" type="string">
+            <column name="LegalPerson" />
+        </property>
+        <property name="loginName" type="string">
+            <column name="LoginName" />
+        </property>
+        <property name="password" type="string">
+            <column name="Password" />
+        </property>
+        <property name="registrationTime" type="date">
+            <column name="RegistrationTime" length="0" />
+        </property>
+        <property name="registeredCapital" type="string">
+            <column name="RegisteredCapital" />
+        </property>
+        <property name="unit" type="string">
+            <column name="Unit" />
+        </property>
+        <property name="channel1" type="string">
+            <column name="Channel1" />
+        </property>
+        <property name="channel2" type="string">
+            <column name="Channel2" />
+        </property>
+        <property name="contact" type="string">
+            <column name="Contact" />
+        </property>
+        <property name="phone" type="string">
+            <column name="Phone" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" />
+        </property>
+        <property name="postcode" type="string">
+            <column name="Postcode" />
+        </property>
+        <property name="roleId" type="int">
+            <column name="RoleID" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
