@@ -8,12 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>企业用户注册</title>
+<script src="<%=request.getContextPath()%>/js/jquery.js"></script>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/jquery-easyui-1.4.4/themes/icon.css"/>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/js/jquery-easyui-1.4.4/themes/gray/easyui.css"/>
 <script src="<%=request.getContextPath()%>/js/jquery-easyui-1.4.4/jquery.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/jquery-easyui-1.4.4/jquery.easyui.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/jquery-easyui-1.4.4/locale/easyui-lang-zh_CN.js"></script>
-<script src="<%=request.getContextPath()%>/js/jquery.js"></script>
+
 <style type="text/css">
 body{margin:0;padding:0; font:12px "宋体", arial,sans-serif;}
 a {color:#ff6600; text-decoration:none;}	
@@ -53,6 +54,17 @@ $(document).ready(function(){
 	}
 });
 var ajaxstate=0;
+function timeboxisnull(id){
+	var txt = $("#"+id).datebox("getValue");
+	if(txt=="")
+	{
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
 function txtisnull(id){
 	var txt=document.getElementById(id).value;
 	if(txt=="")
@@ -69,28 +81,25 @@ function checkForm()
 	if(txtisnull("register_username"))
 	{
 		num++;
-		alert("1");
 	}
 	if(txtisnull("register_password"))
 	{
 		num++;
-		alert("2");
 	}
 	if(txtisnull("register_apassword"))
 	{
 		num++;
-		alert("3");
 	}
-	if(txtisnull("register_company")){num++;alert("4");}
-	if(txtisnull("register_time")){num++;alert("5");}
-	if(txtisnull("register_code")){num++;alert("6");}
-	if(txtisnull("register_money")){num++;alert("7");}
-	if(txtisnull("register_sort")){num++;alert("8");}
-	if(txtisnull("register_channel2")){num++;alert("9");}
-	if(txtisnull("register_contact")){num++;alert("10");}
-	if(txtisnull("register_phone")){num++;alert("11");}
-	if(txtisnull("register_email")){num++;alert("12");}
-	if(txtisnull("register_address")){num++;alert("13");}	
+	if(txtisnull("register_company")){num++;}
+	if(timeboxisnull("register_time")){num++;}
+	if(txtisnull("register_code")){num++;}
+	if(txtisnull("register_money")){num++;}
+	if(txtisnull("register_sort")){num++;}
+	if(txtisnull("register_channel2")){num++;}
+	if(txtisnull("register_contact")){num++;}
+	if(txtisnull("register_phone")){num++;}
+	if(txtisnull("register_email")){num++;}
+	if(txtisnull("register_address")){num++;}	
 	if(num!=0)
 	{
 		alert("您有必填信息没有填写！");
@@ -126,7 +135,7 @@ function checkForm()
 		return false;
 	}
 	else{
-		$("#info_form1").submit();
+		$("#register_Form").submit();
 	}
 }
 function checkcode(objid){
@@ -205,7 +214,7 @@ function getEachScienceOffice(){
 </div>
 <div class="xline"></div>
 <div class="info">
-<form method="post" action="" id="register_Form" name="register_Form">
+<form method="post" action="<%=request.getContextPath()%>/regcompany.do" id="register_Form" name="register_Form">
 	<div class="label1">
 		<span>基本信息</span>
 	</div>
@@ -252,24 +261,24 @@ function getEachScienceOffice(){
 					<tr>
 						<td>注册资金:</td>
 						<td><input class="easyui-textbox box" type="text" name="register_money" id="register_money"></td>
-						<td class="star">*</td>
+						<td class="star">*&nbsp;(万元)</td>
 					</tr>
 					<tr>
 						<td>单位性质:</td>
 						<td><select id="register_sort"  name="register_sort">
 								<option value="">--请选择--</option> 
-								<option value="1" >事业型研究单位</option>
-	     			     		<option value="2" >政府机关</option>
-	     			     		<option value="3" >群众团体</option>
-	     			     		<option value="4" >其他事业单位</option>
-	     			     		<option value="5" >转制型企业</option>
-	     			     		<option value="6" >国有企业</option>
-	     			     		<option value="7" >集体所有制企业</option>
-	     			     		<option value="8" >私营企业</option>
-	     			     		<option value="9" >合资企业</option>
-	     			     		<option value="10" >外商投资企业</option>
-	     			     		<option value="11" >港、澳、台投资企业</option>
-	     			     		<option value="12" >其他企业</option> 
+								<option value="事业型研究单位" >事业型研究单位</option>
+	     			     		<option value="政府机关" >政府机关</option>
+	     			     		<option value="群众团体" >群众团体</option>
+	     			     		<option value="其他事业单位" >其他事业单位</option>
+	     			     		<option value="转制型企业" >转制型企业</option>
+	     			     		<option value="国有企业" >国有企业</option>
+	     			     		<option value="集体所有制企业" >集体所有制企业</option>
+	     			     		<option value="私营企业" >私营企业</option>
+	     			     		<option value="合资企业" >合资企业</option>
+	     			     		<option value="外商投资企业" >外商投资企业</option>
+	     			     		<option value="港、澳、台投资企业" >港、澳、台投资企业</option>
+	     			     		<option value="其他企业" >其他企业</option> 
 							</select>
 						</td>
 						<td class="star">*</td>

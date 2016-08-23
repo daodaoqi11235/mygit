@@ -8,6 +8,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+
 import com.hibernate.beans.Enterprise;
 
 
@@ -43,5 +44,8 @@ public class EnterpriseDAO extends HibernateDaoSupport{
 		} else {
 			return false;
 		}
+	}
+	public void insertEnterprise(Enterprise ep) {
+		getHibernateTemplate().saveOrUpdate(ep);
 	}
 }
