@@ -311,6 +311,18 @@
 	</bean>
 	<bean id="RegCompanyGoAction"
 			class="com.register.RegCompanyGoAction">
+	</bean>	
+	<!--企业channel2  -->
+	<bean id="Channel2Mapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/channel2.do">Channel2Action</prop>
+			</props>
+		</property>
+	</bean>	
+		<bean id="Channel2Action"
+			class="com.register.Channel2Action">
 			<property name="channelDAO">
 				<ref local="channelDAO"/>
 			</property>

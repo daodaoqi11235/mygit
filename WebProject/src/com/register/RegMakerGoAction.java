@@ -10,12 +10,15 @@ import org.springframework.web.servlet.mvc.Controller;
 
 public class RegMakerGoAction implements Controller{
 	FieldDAO fieldDAO;
+	
 	public FieldDAO getFieldDAO() {
 		return fieldDAO;
 	}
+
 	public void setFieldDAO(FieldDAO fieldDAO) {
 		this.fieldDAO = fieldDAO;
 	}
+
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest arg0,
 			HttpServletResponse arg1) throws Exception {

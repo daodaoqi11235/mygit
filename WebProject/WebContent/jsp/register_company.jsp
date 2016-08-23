@@ -158,7 +158,7 @@ function getEachScienceOffice(){
 	$.ajax({
 		type: "POST",
 		async: false,
-		url: "",    
+		url: "<%=request.getContextPath()%>/channel2.do",    
 		data: {first:txtval},   
 		dataType : "text",
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -173,11 +173,11 @@ function getEachScienceOffice(){
 			{
 				objSelect.options.remove(0);  
 			}
-			objSelect[0].options.add(new Option("--请选择--", ""));
-			$.each(result, function (key, value) {
-				var opt = new Option(value.ProName, value.ProID);
-			
-				objSelect[0].options.add(op);
+			objSelect.options.add(new Option("--请选择--", "0"));
+			$(result.msg).each(function (key) {
+                //第一种方法
+                var opt = new Option(result.msg[key].text, result.msg[key].value);
+                objSelect.options.add(opt);
 			});
 		}
 	}); 
@@ -275,10 +275,10 @@ function getEachScienceOffice(){
 						<td>申报渠道:</td>
 						<td><select id="register_channel1"  name="register_channel1" onchange="getEachScienceOffice()">
 								<option value="">--请选择--</option> 
-								<option value="1">区市县科技局</option>
-								<option value="2">高校</option>
-								<option value="3">行业主管部门</option>
-								<option value="4">市科技局</option>
+								<option value="区市县科技局">区市县科技局</option>
+								<option value="高校">高校</option>
+								<option value="行业主管部门">行业主管部门</option>
+								<option value="市科技局">市科技局</option>
 							</select>
 						</td>
 					</tr>
@@ -286,11 +286,6 @@ function getEachScienceOffice(){
 						<td></td>
 						<td>
 							<select id="register_channel2"  name="register_channel2">
-							<option value="">--请选择--</option> 
-								<%List  list= (ArrayList)request.getAttribute("channel");
-								for(int i=0;i<list.size();i++){
-									Channel cn = (Channel)list.get(i);
-									%><option value="<%=cn.getChannelId()%>"><%=cn.getPart2()%></option><%}%>
 							</select>
 						</td>
 						<td class="star">*</td>
