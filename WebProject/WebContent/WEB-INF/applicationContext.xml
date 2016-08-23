@@ -242,21 +242,30 @@
 			<property name="formView">
 				<value>login</value>    
 			</property>
-			<!-- 指定成功要返回的页面 -->
-<!-- 			<property name="adminView">
-				<value>welcome</value>
-			</property>
-			<property name="expertView">
-				<value>welcome</value>
-			</property>
-			<property name="makerView">
-				<value>welcome</value>
-			</property>
-			<property name="enterpriseView">
-				<value>welcome</value>
-			</property>
-			<property name="governmentView">
-				<value>welcome</value>
-			</property> -->
 	</bean>
+	<!-- 创客注册跳转 -->
+	
+	<bean id="RegmakergoMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/regmakergo.do">RegMakerGoAction</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="RegMakerGoAction"
+			class="com.register.RegMakerGoAction">
+	</bean>
+	<!--企业注册跳转  -->
+	<bean id="RegcompanygoMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/regcompanygo.do">RegCompanyGoAction</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="RegCompanyGoAction"
+			class="com.register.RegCompanyGoAction">
+	</bean>	
 </beans>

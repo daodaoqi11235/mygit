@@ -144,7 +144,7 @@ function usernameajax(objid)
 		<span style="position:absolute;bottom:0px; ">创客用户注册</span>
 	</div>
 	<div class="title_right">
-		<a href="<%=request.getContextPath()%>/jsp/register_company.jsp" style="position:absolute;bottom:0px; ">切换到企业用户注册</a><!-- 提取企业注册相关信息后台代码 -->
+		<a href="<%=request.getContextPath()%>/regcompanygo.do" style="position:absolute;bottom:0px; ">切换到企业用户注册</a><!-- 提取企业注册相关信息后台代码 -->
 	</div>
 </div>
 <div class="xline"></div>

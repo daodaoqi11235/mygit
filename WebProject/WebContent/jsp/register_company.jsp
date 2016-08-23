@@ -151,15 +151,18 @@ function usernameajax(objid)
 }
 function getEachScienceOffice(){
 	var txtval=$("#register_channel1").val();
+	if(txtval!=""){
 	$.ajax({
 		type: "POST",
 		async: false,
 		url: "",    
 		data: {first:txtval},   
 		dataType : "text",
-		error:function(err){
-			alert("错误");
-				},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			 alert(XMLHttpRequest.status);
+			 alert(XMLHttpRequest.readyState);
+			 alert(textStatus);
+			   },
 		success: function(msg){
 			var objSelect = document.getElementById("register_channel2");
 			var result = eval("("+msg+")"); 
@@ -176,6 +179,7 @@ function getEachScienceOffice(){
 		}
 	}); 
 }
+}
 </script>
 </head>
 <body>
@@ -190,7 +194,7 @@ function getEachScienceOffice(){
 		<span style="position:absolute;bottom:0px; ">企业用户注册</span>
 	</div>
 	<div class="title_right">
-		<a href="<%=request.getContextPath()%>/jsp/register_maker.jsp" style="position:absolute;bottom:0px; ">切换到创客用户注册</a><!-- 提取创客注册相关信息后台代码 -->
+		<a href="<%=request.getContextPath()%>/regmakergo.do" style="position:absolute;bottom:0px; ">切换到创客用户注册</a><!-- 提取创客注册相关信息后台代码 -->
 	</div>
 </div>
 <div class="xline"></div>
@@ -248,9 +252,18 @@ function getEachScienceOffice(){
 						<td>单位性质:</td>
 						<td><select id="register_sort"  name="register_sort">
 								<option value="">--请选择--</option> 
-								<s:iterator value="sort" id="clazz"> 
- 									<option value="${clazz.cid}">${clazz.cname } </option> 
-     							</s:iterator> 
+								<option value="1" >事业型研究单位</option>
+	     			     		<option value="2" >政府机关</option>
+	     			     		<option value="3" >群众团体</option>
+	     			     		<option value="4" >其他事业单位</option>
+	     			     		<option value="5" >转制型企业</option>
+	     			     		<option value="6" >国有企业</option>
+	     			     		<option value="7" >集体所有制企业</option>
+	     			     		<option value="8" >私营企业</option>
+	     			     		<option value="9" >合资企业</option>
+	     			     		<option value="10" >外商投资企业</option>
+	     			     		<option value="11" >港、澳、台投资企业</option>
+	     			     		<option value="12" >其他企业</option> 
 							</select>
 						</td>
 						<td class="star">*</td>
@@ -259,9 +272,10 @@ function getEachScienceOffice(){
 						<td>申报渠道:</td>
 						<td><select id="register_channel1"  name="register_channel1" onchange="getEachScienceOffice()">
 								<option value="">--请选择--</option> 
-								<s:iterator value="channel1" id="clazz"> 
- 									<option value="${clazz.cid}">${clazz.cname } </option> 
-     							</s:iterator> 
+								<option value="1">区市县科技局</option>
+								<option value="2">高校</option>
+								<option value="3">行业主管部门</option>
+								<option value="4">市科技局</option>
 							</select>
 						</td>
 					</tr>

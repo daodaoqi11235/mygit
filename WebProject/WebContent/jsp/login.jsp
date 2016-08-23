@@ -105,7 +105,7 @@ function changecode(){
 										<img name="login_signin" id="login_signin" alt="登录" src="<%=request.getContextPath()%>/image/signin.png" onclick="checkForm()" style="cursor:pointer;" />&nbsp;										
 									</div>
                                     <div style="float:left; line-height:40px; padding-left:20px;">
-                                    <a href="<%=request.getContextPath()%>/jsp/register_maker.jsp" style="color: #338cce;">新用户注册</a><!-- 链接注册页面 -->
+                                    <a href="<%=request.getContextPath()%>/regmakergo.do" style="color: #338cce;">新用户注册</a><!-- 链接注册页面 -->
                                     </div>
 								</td>
 
