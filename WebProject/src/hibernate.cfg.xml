@@ -13,5 +13,7 @@
   <mapping resource="com/hibernate/beans/Maker.hbm.xml"/>
   <mapping resource="com/hibernate/beans/Enterprise.hbm.xml"/>
   <mapping resource="com/hibernate/beans/Government.hbm.xml"/>
+  <mapping resource="com/hibernate/beans/Field.hbm.xml"/>
+  <mapping resource="com/hibernate/beans/Channel.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

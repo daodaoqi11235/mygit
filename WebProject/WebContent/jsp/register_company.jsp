@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.hibernate.beans.Channel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -283,6 +286,11 @@ function getEachScienceOffice(){
 						<td></td>
 						<td>
 							<select id="register_channel2"  name="register_channel2">
+							<option value="">--请选择--</option> 
+								<%List  list= (ArrayList)request.getAttribute("channel");
+								for(int i=0;i<list.size();i++){
+									Channel cn = (Channel)list.get(i);
+									%><option value="<%=cn.getChannelId()%>"><%=cn.getPart2()%></option><%}%>
 							</select>
 						</td>
 						<td class="star">*</td>

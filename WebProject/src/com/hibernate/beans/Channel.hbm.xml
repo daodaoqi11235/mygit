@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-23 10:37:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Channel" table="channel">
+        <id name="channelId" type="java.lang.Integer">
+            <column name="ChannelID" />
+            <generator class="identity" />
+        </id>
+        <property name="part1" type="string">
+            <column name="Part1" not-null="true" />
+        </property>
+        <property name="part2" type="string">
+            <column name="Part2" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

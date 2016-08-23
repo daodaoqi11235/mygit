@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.hibernate.beans.Field"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -207,21 +210,21 @@ function usernameajax(objid)
 						<td>第一领域:</td>
 						<td><select id="register_field1"  name="register_field1">
 								<option value="">--请选择--</option> 
-								<s:iterator value="list" id="clazz"> 
- 									<option value="${clazz.cid}">${clazz.cname } </option> 
-     							</s:iterator> 
-							</select>
+								<%List  list= (ArrayList)request.getAttribute("field");
+								for(int i=0;i<list.size();i++){
+									Field fd = (Field)list.get(i);%><option value="<%=fd.getFieldId()%>"><%=fd.getName()%></option><%}%>
+							<select>
 						</td>
 						<td class="star">*</td>
 					</tr>
 					<tr>
 						<td>第二领域:</td>
-						<td><select id="register_field2"  name="register_field2">
-								<option value="">--请选择--</option>
-								<s:iterator value="list" id="clazz"> 
- 									<option value="${clazz.cid}">${clazz.cname } </option> 
-     							</s:iterator> 
-							</select>
+						<td><select id="register_field1"  name="register_field2">
+								<option value="">--请选择--</option> 
+								<%
+								for(int i=0;i<list.size();i++){
+									Field fd = (Field)list.get(i);%><option value="<%=fd.getFieldId()%>"><%=fd.getName()%></option><%}%>
+							<select>
 						</td>
 						<td class="star"></td>
 					</tr>

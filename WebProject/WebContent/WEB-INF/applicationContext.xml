@@ -35,6 +35,8 @@
 				<value>com/hibernate/beans/Enterprise.hbm.xml</value>
 				<value>com/hibernate/beans/Government.hbm.xml</value>
 				<value>com/hibernate/beans/Maker.hbm.xml</value>
+				<value>com/hibernate/beans/Field.hbm.xml</value>
+				<value>com/hibernate/beans/Channel.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -244,7 +246,26 @@
 			</property>
 	</bean>
 	<!-- 创客注册跳转 -->
-	
+	<bean id="fieldDAO" class="com.register.FieldDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="FieldDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="fieldDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
 	<bean id="RegmakergoMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -255,8 +276,31 @@
 	</bean>
 	<bean id="RegMakerGoAction"
 			class="com.register.RegMakerGoAction">
+			<property name="fieldDAO">
+				<ref local="fieldDAO"/>
+			</property>
 	</bean>
 	<!--企业注册跳转  -->
+	<bean id="channelDAO" class="com.register.ChannelDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ChannelDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="channelDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
 	<bean id="RegcompanygoMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -267,5 +311,8 @@
 	</bean>
 	<bean id="RegCompanyGoAction"
 			class="com.register.RegCompanyGoAction">
+			<property name="channelDAO">
+				<ref local="channelDAO"/>
+			</property>
 	</bean>	
 </beans>
