@@ -56,18 +56,14 @@ public class RegCompanyAction extends SimpleFormController {
 			ep.setPhone(epf.getRegister_phone());
 			ep.setEmail(epf.getRegister_email());
 			ep.setPostcode(epf.getRegister_address());
-			
+			ep.setRoleId(3);;
 			try{
 				enterpriseDAO.insertEnterprise(ep);
 			}catch (Exception e){
-				List list=fieldDAO.getField();
-				request.setAttribute("field", list);
 				return new ModelAndView(getFormView());			
 			}
 			
 			return new ModelAndView(getSuccessView());
-			
-
 
     }
 }

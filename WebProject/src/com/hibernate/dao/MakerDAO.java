@@ -46,4 +46,7 @@ public class MakerDAO extends HibernateDaoSupport{
 			return false;
 		}
 	}
+	public void insertMaker(Maker mk) {
+		getHibernateTemplate().saveOrUpdate(mk);
+	}
 }

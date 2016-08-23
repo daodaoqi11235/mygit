@@ -109,7 +109,7 @@ function checkForm()
 		return false;
 	}
 	else{
-		$("#info_form1").submit();
+		$("#register_Form").submit();
 	}
 }
 function usernameajax(objid)
@@ -152,7 +152,7 @@ function usernameajax(objid)
 </div>
 <div class="xline"></div>
 <div class="info">
-<form method="post" action="" id="register_Form" name="register_Form">
+<form method="post" action="<%=request.getContextPath()%>/regmaker.do" id="register_Form" name="register_Form">
 	<div class="label1">
 		<span>基本信息</span>
 	</div>
@@ -212,18 +212,18 @@ function usernameajax(objid)
 								<option value="">--请选择--</option> 
 								<%List  list= (ArrayList)request.getAttribute("field");
 								for(int i=0;i<list.size();i++){
-									Field fd = (Field)list.get(i);%><option value="<%=fd.getFieldId()%>"><%=fd.getName()%></option><%}%>
+									Field fd = (Field)list.get(i);%><option value="<%=fd.getName()%>"><%=fd.getName()%></option><%}%>
 							<select>
 						</td>
 						<td class="star">*</td>
 					</tr>
 					<tr>
 						<td>第二领域:</td>
-						<td><select id="register_field1"  name="register_field2">
+						<td><select id="register_field2"  name="register_field2">
 								<option value="">--请选择--</option> 
 								<%
 								for(int i=0;i<list.size();i++){
-									Field fd = (Field)list.get(i);%><option value="<%=fd.getFieldId()%>"><%=fd.getName()%></option><%}%>
+									Field fd = (Field)list.get(i);%><option value="<%=fd.getName()%>"><%=fd.getName()%></option><%}%>
 							<select>
 						</td>
 						<td class="star"></td>

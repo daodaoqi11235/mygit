@@ -374,6 +374,30 @@
 			<property name="enterpriseDAO">
 			<ref local="enterpriseDAO" />
 			</property>
+			<property name="formView">
+				<value>register_enterprise</value>
+			</property>
+			<property name="successView">
+				<value>login</value>
+			</property>
+	</bean>		
+	<!--创客注册  -->
+	<bean id="RegMakerMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/regmaker.do">RegMakerAction</prop>
+			</props>
+		</property>
+	</bean>	
+		<bean id="RegMakerAction"
+			class="com.register.RegMakerAction">
+			<property name="commandClass">
+				<value>com.register.MakerForm</value>
+			</property>
+			<property name="makerDAO">
+			<ref local="makerDAO" />
+			</property>
 			<property name="fieldDAO">
 			<ref local="fieldDAO" />
 			</property>
