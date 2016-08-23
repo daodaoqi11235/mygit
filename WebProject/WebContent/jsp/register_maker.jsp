@@ -118,7 +118,7 @@ function usernameajax(objid)
 	$.ajax({
 		type: "POST",
 		async: false,
-		url: "",    
+		url: "<%=request.getContextPath()%>/makerexist.do",    
 		data: {username:txtval},   
 		dataType : "text",
 		success: function(msg){

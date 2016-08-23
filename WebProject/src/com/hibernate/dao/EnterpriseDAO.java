@@ -29,4 +29,19 @@ public class EnterpriseDAO extends HibernateDaoSupport{
 			return false;
 		}
 	}
+	public boolean isExist(final String username){
+		List list =(List) getHibernateTemplate().execute(new HibernateCallback(){
+			public Object doInHibernate(Session session)
+			throws HibernateException{
+				List result = session.createCriteria(Enterprise.class).add(
+						Restrictions.eq("loginName", username)).list();
+				return result;
+			}
+		});
+		if (list.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

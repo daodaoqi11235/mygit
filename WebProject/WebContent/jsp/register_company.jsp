@@ -69,25 +69,28 @@ function checkForm()
 	if(txtisnull("register_username"))
 	{
 		num++;
+		alert("1");
 	}
 	if(txtisnull("register_password"))
 	{
 		num++;
+		alert("2");
 	}
 	if(txtisnull("register_apassword"))
 	{
 		num++;
+		alert("3");
 	}
-	if(txtisnull("register_company")){num++;}
-	if(txtisnull("register_time")){num++;}
-	if(txtisnull("register_code")){num++;}
-	if(txtisnull("register_money")){num++;}
-	if(txtisnull("register_sort")){num++;}
-	if(txtisnull("register_channel2")){num++;}
-	if(txtisnull("register_contact")){num++;}
-	if(txtisnull("register_phone")){num++;}
-	if(txtisnull("register_email")){num++;}
-	if(txtisnull("register_address")){num++;}	
+	if(txtisnull("register_company")){num++;alert("4");}
+	if(txtisnull("register_time")){num++;alert("5");}
+	if(txtisnull("register_code")){num++;alert("6");}
+	if(txtisnull("register_money")){num++;alert("7");}
+	if(txtisnull("register_sort")){num++;alert("8");}
+	if(txtisnull("register_channel2")){num++;alert("9");}
+	if(txtisnull("register_contact")){num++;alert("10");}
+	if(txtisnull("register_phone")){num++;alert("11");}
+	if(txtisnull("register_email")){num++;alert("12");}
+	if(txtisnull("register_address")){num++;alert("13");}	
 	if(num!=0)
 	{
 		alert("您有必填信息没有填写！");
@@ -137,7 +140,7 @@ function usernameajax(objid)
 	$.ajax({
 		type: "POST",
 		async: false,
-		url: "",    
+		url: "<%=request.getContextPath()%>/companyexist.do",    
 		data: {username:txtval},   
 		dataType : "text",
 		success: function(msg){

@@ -327,4 +327,34 @@
 				<ref local="channelDAO"/>
 			</property>
 	</bean>	
+	<!-- 企业名存在 -->
+	<bean id="companyexistMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/companyexist.do">CompanyExistAction</prop>
+			</props>
+		</property>
+	</bean>	
+		<bean id="CompanyExistAction"
+			class="com.register.CompanyExistAction">
+			<property name="enterpriseDAO">
+			<ref local="enterpriseDAO" />
+			</property>
+	</bean>	
+	<!-- 创客名存在 -->
+	<bean id="makerexistMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/makerexist.do">MakerExistAction</prop>
+			</props>
+		</property>
+	</bean>	
+		<bean id="MakerExistAction"
+			class="com.register.MakerExistAction">
+			<property name="makerDAO">
+			<ref local="makerDAO" />
+			</property>
+	</bean>	
 </beans>
