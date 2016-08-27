@@ -21,7 +21,7 @@ public class LogOutAction implements Controller{
 		             request.getSession().removeAttribute(em.nextElement().toString());
 		 
 		         }
-		         System.out.println("logoutaction");
+		
 		request.getSession().invalidate();
 		return new ModelAndView("login");
 	}
