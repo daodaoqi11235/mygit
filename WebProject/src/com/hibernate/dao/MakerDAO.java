@@ -10,7 +10,9 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 
 
+
 import com.hibernate.beans.Enterprise;
+import com.hibernate.beans.Expert;
 import com.hibernate.beans.Maker;
 
 public class MakerDAO extends HibernateDaoSupport{
@@ -48,5 +50,22 @@ public class MakerDAO extends HibernateDaoSupport{
 	}
 	public void insertMaker(Maker mk) {
 		getHibernateTemplate().saveOrUpdate(mk);
+	}
+	
+	public Maker getMaker(final String username) {
+		@SuppressWarnings("rawtypes")
+		List list = (List) getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session)
+					throws HibernateException {
+				List result = session.createCriteria(Maker.class).add(
+						Restrictions.eq("loginName", username)).list();
+				return result;
+			}
+		});
+		if (list.size() == 1) {
+			return (Maker) list.get(0);
+		} else {
+			return null;
+		}
 	}
 }

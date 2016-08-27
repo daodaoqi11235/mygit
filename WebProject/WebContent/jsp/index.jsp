@@ -19,9 +19,9 @@
 		<frame name="topFrame" src="<%=request.getContextPath()%>/jsp/topbanner.jsp" scrolling="no" noresize target="contents">
 		<frame name="topFrame1" src="<%=request.getContextPath()%>/jsp/topmenu.jsp" scrolling="no" noresize>
 		<frameset id="centerFrame" name="centerFrame" cols="180,10,*" framespacing="0">
-			<frame name="MenuFrame" src="<%=request.getContextPath()%>/jsp/maker/leftmenu.jsp" scrolling="no" noresize>
+			<frame name="MenuFrame" src="<%=request.getContextPath()+request.getSession().getAttribute("MenuFrame")%>" scrolling="no" noresize>
 			<frame name="pushRLFrame" src="<%=request.getContextPath()%>/jsp/pushRL.htm" scrolling="no" noresize>
-			<frame name="PageFrame" src="<%=request.getContextPath()%>/jsp/maker/loging.jsp">
+			<frame name="PageFrame" src="<%=request.getContextPath()+request.getSession().getAttribute("PageFrame")%>">
 		</frameset>
 	</frameset><noframes></noframes>
  <body>

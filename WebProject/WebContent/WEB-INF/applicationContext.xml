@@ -37,6 +37,7 @@
 				<value>com/hibernate/beans/Maker.hbm.xml</value>
 				<value>com/hibernate/beans/Field.hbm.xml</value>
 				<value>com/hibernate/beans/Channel.hbm.xml</value>
+				<value>com/hibernate/beans/Makernews.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -212,6 +213,26 @@
 			</props>
 		</property>
 	</bean>
+	<bean id="makernewsDAO" class="com.login.MakerNewsDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MakerNewsDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="makernewsDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
 	<bean id="loginMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -237,6 +258,9 @@
 			</property>
 			<property name="governmentDAO">
 			<ref local="governmentDAO" />
+			</property>
+			<property name="makernewsDAO">
+			<ref local="makernewsDAO" />
 			</property>
 			<!-- 指定验证类 -->
 
@@ -408,4 +432,41 @@
 				<value>login</value>
 			</property>
 	</bean>		
+	<!--退出登录  -->
+		<bean id="LogOutMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/logout.do">LogOutAction</prop>
+			</props>
+		</property>
+	</bean>	
+		<bean id="LogOutAction"
+			class="com.loging.LogOutAction">
+	</bean>	
+	<!--主页新闻加载  -->
+
+<!-- 	<bean id="MakerNewsMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/makernews.do">MakerNewsAction</prop>
+			</props>
+		</property>
+	</bean>	
+		<bean id="MakerNewsAction"
+			class="com.loging.MakerNewsAction">
+			<property name="commandClass">
+				<value>com.register.LogingForm</value>
+			</property>
+			<property name="makernewsDAO">
+			<ref local="makernewsDAO" />
+			</property>
+			<property name="formView">
+				<value>register_maker</value>
+			</property>
+			<property name="successView">
+				<value>login</value>
+			</property>
+	</bean>	 -->	
 </beans>

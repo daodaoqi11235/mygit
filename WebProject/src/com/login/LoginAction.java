@@ -1,5 +1,7 @@
 package com.login;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +16,12 @@ import org.springframework.web.servlet.mvc.SimpleFormController;
 
 
 
+
+
+
 import com.google.code.kaptcha.Constants;
+import com.hibernate.beans.Expert;
+import com.hibernate.beans.Maker;
 import com.hibernate.dao.AdministratorDAO;
 import com.hibernate.dao.EnterpriseDAO;
 import com.hibernate.dao.ExpertDAO;
@@ -82,6 +89,18 @@ public class LoginAction extends SimpleFormController {
 		this.expertDAO = expertDAO;
 	}
 
+	MakerNewsDAO makernewsDAO;
+
+	public MakerNewsDAO getMakernewsDAO() {
+		return makernewsDAO;
+	}
+
+
+
+	public void setMakernewsDAO(MakerNewsDAO makernewsDAO) {
+		this.makernewsDAO = makernewsDAO;
+	}
+
 
 
 	protected ModelAndView onSubmit(HttpServletRequest request,
@@ -96,11 +115,33 @@ public class LoginAction extends SimpleFormController {
 				request.getSession().setAttribute("isExist","2");
 				return new ModelAndView(getFormView());				
 			}
-			if(loginForm.getRole().equals("expert")&&expertDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
+			
+			if(loginForm.getRole().equals("expert")&&expertDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){		
 				return new ModelAndView("welcome");
 			}
 			else if(loginForm.getRole().equals("maker")&&makerDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
-				return new ModelAndView("welcome");
+				request.getSession().setAttribute("MenuFrame", "/jsp/maker/leftmenu.jsp");
+				request.getSession().setAttribute("PageFrame", "/jsp/maker/loging.jsp");
+				if(makerDAO.getMaker(loginForm.getLogin_username())!=null){
+					Maker exp=makerDAO.getMaker(loginForm.getLogin_username());
+					request.getSession().setAttribute("loginname", exp.getLoginName());
+					request.getSession().setAttribute("role", "创客用户");	
+					request.getSession().setAttribute("roleID", exp.getRoleId());
+				}
+				else{
+					System.out.println("无此用户");
+				}
+				//添加新闻
+				
+				List list1=makernewsDAO.getN_policy();
+				List list2=makernewsDAO.getAnnouncement();
+				List list3=makernewsDAO.getFoundation();
+				List list4=makernewsDAO.getB_policy();
+				request.getSession().setAttribute("n_policy", list1);
+				request.getSession().setAttribute("announcement", list2);
+				request.getSession().setAttribute("foundation", list3);
+				request.getSession().setAttribute("b_policy", list4);
+				return new ModelAndView("index");
 			}
 			else if(loginForm.getRole().equals("enterprise")&&enterpriseDAO.isValid(loginForm.getLogin_username(), loginForm.getLogin_password())){
 				return new ModelAndView("welcome");

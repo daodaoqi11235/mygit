@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form method="post" action="#" id="Form1">
     <div class="navbg">
         <div align="center" class="navleft">
-            <font size="2" color="#fff100">欢迎您登录:&nbsp;<%=request.getSession().getAttribute("username") %>！</font>
+            <font size="2" color="#fff100">欢迎您登录:&nbsp;<%=request.getSession().getAttribute("loginname") %>！</font>
         </div>
         <div class="navx">
         	 <font size="2" color="#fff100">当前用户组:&nbsp;

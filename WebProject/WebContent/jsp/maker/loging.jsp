@@ -1,3 +1,7 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
+<%@ page import="java.text.DateFormat"%>
+<%@ page import="com.hibernate.beans.Makernews"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -132,34 +136,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery-easyui-1.4.4/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/js/tipsdiv.js"></script>
-    <script>
-        $(document).ready(function () {
-            var txtdate = 'txtdate';
-            var hidxh = 'hidxh';
-            var strxh = document.getElementById(hidxh).value;
-            document.getElementById(txtdate).onchange = function () {
-                $("#divkc").html("<div style='width:100%;padding-top:20px;vertical-align:middle;text-align:center;'>正在加载课程...</div>");
-                $.get("App_Ajax/GetkcHandler.ashx", { kcdate: this.value, xh: strxh }, function (data) {
-                    if (data != "") {
-                        $("#divkc").html(data);
-                    }
-                });
-            
-            if ($("#hfcontent").html() != "") {
-                $("#messenger").slideDown(1000);
-            }
-       }
-        var closemsg = function () {
-            $("#messenger").slideUp("slow");
+    <script type="text/javascript">
+        function setId(hrefId){
+        	document.getElementById("newsId").value=hrefId;
+        	form1.submit();
         }
-		});
     </script>
 </head>
 <body>
  
- <form method="post" action="#" id="form1">
+ <form method="post" action="#" id="form1" name="form1">
 
-   <input type="hidden" name="hidxh" id="hidxh" value=" " />
+   <input type="hidden" name="newId" id="newsId" value="" />
 
     <div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -177,10 +165,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     国家科技政策</div>
                                 <div class="titlebox">
                                     <ul>
-                                    <%List  list= (ArrayList)request.getAttribute("n_policy");
-    								for(int i=0;i<list.size();i++){
-    									Field fd = (Field)list.get(i); %>
-										<li><span><%=fd.getNewsTime() %></span><a href=""><%=fd.getNewsTitle()%></a></li><!-- href填servlet -->
+                                    <%List  list1= (ArrayList)request.getSession().getAttribute("n_policy");
+    								for(int i=0;i<list1.size();i++){
+    									Makernews mn = (Makernews)list1.get(i); %>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
 										<%}%>
                                     </ul>
                                 </div>
@@ -196,11 +184,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                      系统公告</div>
                                 <div class="titlebox">
                                     <ul>
-                                 	   <%List  list= (ArrayList)request.getAttribute("announcement");
-    								for(int i=0;i<list.size();i++){
-    									Field fd = (Field)list.get(i); %>
-										<li><span><%=fd.getNewsTime() %></span><a href=""><%=fd.getNewsTitle()%></a></li><!-- href填servlet -->
-										<%}%>
+                                     <%List  list2= (ArrayList)request.getSession().getAttribute("announcement");
+    								for(int i=0;i<list2.size();i++){
+    									Makernews mn = (Makernews)list2.get(i); %>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
+										<%}%>                                	
                                     </ul>
                                 </div>
                                 <!--系统公告 End-->
@@ -216,11 +204,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     专项与基金</div>
                                 <div class="titlebox">
                                     <ul>
-                                      <%List  list= (ArrayList)request.getAttribute("foundation");
-    								for(int i=0;i<list.size();i++){
-    									Field fd = (Field)list.get(i); %>
-										<li><span><%=fd.getNewsTime() %></span><a href=""><%=fd.getNewsTitle()%></a></li><!-- href填servlet -->
-										<%}%>
+                                       <ul>
+                                     <%List  list3= (ArrayList)request.getSession().getAttribute("foundation");
+    								for(int i=0;i<list3.size();i++){
+    									Makernews mn = (Makernews)list3.get(i); %>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
+										<%}%>                                	
+                                    </ul>                                  
                                     </ul>
                                 </div>
                                 <!-- 专项与基金End-->
@@ -234,11 +224,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                   银行资金援助项目</div>
                                 <div class="titlebox" style="height: 135px;">
                                     <ul>
-                                       <%List  list= (ArrayList)request.getAttribute("b_policy");
-    								for(int i=0;i<list.size();i++){
-    									Field fd = (Field)list.get(i); %>
-										<li><span><%=fd.getNewsTime() %></span><a href=""><%=fd.getNewsTitle()%></a></li><!-- href填servlet -->
-										<%}%>      
+                                    <%List  list4= (ArrayList)request.getSession().getAttribute("b_policy");
+    								for(int i=0;i<list4.size();i++){
+    									Makernews mn = (Makernews)list4.get(i); %>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
+										<%}%>                                       
                                     </ul>
                                 </div>
                                 <!-- 银行资金援助项目 End-->

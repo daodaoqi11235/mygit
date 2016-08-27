@@ -33,4 +33,21 @@ public class ExpertDAO extends HibernateDaoSupport implements IExpertDAO{
 			return false;
 		}
 	}
+	
+	public Expert getExpert(final String username) {
+		@SuppressWarnings("rawtypes")
+		List list = (List) getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session)
+					throws HibernateException {
+				List result = session.createCriteria(Expert.class).add(
+						Restrictions.eq("loginName", username)).list();
+				return result;
+			}
+		});
+		if (list.size() == 1) {
+			return (Expert) list.get(0);
+		} else {
+			return null;
+		}
+	}
 }
