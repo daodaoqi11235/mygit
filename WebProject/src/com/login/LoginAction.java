@@ -125,8 +125,10 @@ public class LoginAction extends SimpleFormController {
 				if(makerDAO.getMaker(loginForm.getLogin_username())!=null){
 					Maker exp=makerDAO.getMaker(loginForm.getLogin_username());
 					request.getSession().setAttribute("loginname", exp.getLoginName());
+					request.getSession().setAttribute("password", exp.getPassword());
 					request.getSession().setAttribute("role", "创客用户");	
 					request.getSession().setAttribute("roleID", exp.getRoleId());
+					request.getSession().setAttribute("makerID", exp.getMakerId());
 				}
 				else{
 					System.out.println("无此用户");

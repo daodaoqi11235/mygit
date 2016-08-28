@@ -139,7 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript">
         function setId(hrefId){
         	document.getElementById("newsId").value=hrefId;
-        	form1.submit();
+        	return true;
         }
     </script>
 </head>
@@ -168,7 +168,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <%List  list1= (ArrayList)request.getSession().getAttribute("n_policy");
     								for(int i=0;i<list1.size();i++){
     									Makernews mn = (Makernews)list1.get(i); %>
-										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
 										<%}%>
                                     </ul>
                                 </div>
@@ -187,7 +187,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                      <%List  list2= (ArrayList)request.getSession().getAttribute("announcement");
     								for(int i=0;i<list2.size();i++){
     									Makernews mn = (Makernews)list2.get(i); %>
-										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
 										<%}%>                                	
                                     </ul>
                                 </div>
@@ -208,7 +208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                      <%List  list3= (ArrayList)request.getSession().getAttribute("foundation");
     								for(int i=0;i<list3.size();i++){
     									Makernews mn = (Makernews)list3.get(i); %>
-										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
 										<%}%>                                	
                                     </ul>                                  
                                     </ul>
@@ -227,7 +227,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <%List  list4= (ArrayList)request.getSession().getAttribute("b_policy");
     								for(int i=0;i<list4.size();i++){
     									Makernews mn = (Makernews)list4.get(i); %>
-										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="" onclick="setId(this.id)" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
+										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
 										<%}%>                                       
                                     </ul>
                                 </div>

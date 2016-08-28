@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 2016-8-17 20:54:15 by Hibernate Tools 3.4.0.CR1 -->
+<!-- Generated 2016-8-26 21:53:47 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="com.base.hibernate.beans.Enum" table="enum">
+    <class name="com.base.hibernate.beans.Enum" table="enum" catalog="test">
         <id name="id" type="int">
             <column name="id" />
             <generator class="assigned" />
@@ -13,6 +13,9 @@
         </property>
         <property name="txt" type="string">
             <column name="txt" length="65535" />
+        </property>
+        <property name="date" type="date">
+            <column name="date" length="0" />
         </property>
     </class>
 </hibernate-mapping>

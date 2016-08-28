@@ -444,6 +444,28 @@
 		<bean id="LogOutAction"
 			class="com.loging.LogOutAction">
 	</bean>	
+	<!--创客密码重置  -->
+	<bean id="RePasswordMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/repassword.do">RePasswordAction</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	<bean id="RePasswordAction"
+			class="com.repassword.RePasswordAction">
+			<property name="commandClass">
+				<value>com.repassword.RePasswordForm</value>
+			</property>
+			<property name="makerDAO">
+			<ref local="makerDAO" />
+			</property>
+			<property name="successView">
+				<value>/maker/loging</value>
+			</property>
+	</bean>	
 	<!--主页新闻加载  -->
 
 <!-- 	<bean id="MakerNewsMapping"

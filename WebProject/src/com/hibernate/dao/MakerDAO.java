@@ -3,12 +3,12 @@ package com.hibernate.dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-
-
 
 
 import com.hibernate.beans.Enterprise;
@@ -67,5 +67,15 @@ public class MakerDAO extends HibernateDaoSupport{
 		} else {
 			return null;
 		}
+	}
+
+	public Maker getMakerbyID(String userid) {
+		return (Maker) getHibernateTemplate().get(Maker.class,
+				new Integer(userid));
+	}
+	public void resetPassword(int id,String np){
+		Maker mk=this.getMakerbyID(Integer.toString(id));
+		mk.setPassword(np);
+		getHibernateTemplate().update(mk);
 	}
 }
