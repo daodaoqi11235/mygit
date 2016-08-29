@@ -27,7 +27,7 @@ select{width:245px;}
 .header_right{height:50px; width:265px;position:absolute;text-align:center;margin:0px auto;right:50px;top:100px;}
 .xline{border-bottom:solid 2px #7A378B; height:5px;width:1000px;margin:0px auto;}
 .title{width:800px;height:100px;margin:0px auto;clear:both;position:relative; }
-.title_left{height:100%; width:200px; position:absolute; left:50px; font-size:28px; font-family:"微软雅黑";bottom:0px;font-weight:bold; }
+.title_left{height:100%; width:400px; position:absolute; left:50px; font-size:28px; font-family:"微软雅黑";bottom:0px;font-weight:bold; }
 .title_right{height:50px; width:150px;position:absolute;margin:0px auto;right:50px;bottom:0px;}
 .label1{font:16px "微软雅黑",arial,sans-serif ; width:100px; position:absolute; left:100px;top:30px; font-weight:bold}
 .label2{font:16px "微软雅黑",arial,sans-serif ; width:100px; position:absolute; left:100px;top:240px; font-weight:bold}
@@ -145,6 +145,8 @@ function usernameajax(objid)
 <div class="title">
 	<div class="title_left">
 		<span style="position:absolute;bottom:0px; ">创客用户注册</span>
+		<span style="position:absolute;bottom:0px; font-size:12px;left:180px">适用于:个人、团队创业者及小微企业</span>
+		
 	</div>
 	<div class="title_right">
 		<a href="<%=request.getContextPath()%>/regcompanygo.do" style="position:absolute;bottom:0px; ">切换到企业用户注册</a><!-- 提取企业注册相关信息后台代码 -->

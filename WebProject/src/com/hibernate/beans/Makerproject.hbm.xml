@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-8-29 15:51:15 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Makerproject" table="makerproject" >
+        <id name="makerProjectId" type="java.lang.Integer">
+            <column name="MakerProjectID" />
+            <generator class="identity" />
+        </id>
+        <property name="title" type="string">
+            <column name="Title" />
+        </property>
+        <property name="startTime" type="timestamp">
+            <column name="StartTime" length="0" />
+        </property>
+        <property name="endTime" type="timestamp">
+            <column name="EndTime" length="0" />
+        </property>
+        <property name="description" type="string">
+            <column name="Description" length="65535" />
+        </property>
+        <property name="fujian" type="binary">
+            <column name="Fujian" />
+        </property>
+        <property name="fujianName" type="string">
+            <column name="FujianName" />
+        </property>
+        <property name="fujianType" type="string">
+            <column name="FujianType" />
+        </property>
+    </class>
+</hibernate-mapping>

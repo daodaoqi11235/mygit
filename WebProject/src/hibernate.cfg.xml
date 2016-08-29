@@ -16,5 +16,6 @@
   <mapping resource="com/hibernate/beans/Field.hbm.xml"/>
   <mapping resource="com/hibernate/beans/Channel.hbm.xml"/>
   <mapping resource="com/hibernate/beans/Makernews.hbm.xml"/>
+  <mapping resource="com/hibernate/beans/Makerproject.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

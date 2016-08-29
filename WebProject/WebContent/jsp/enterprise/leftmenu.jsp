@@ -58,7 +58,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		"menuname" : "基本信息管理",
 		"menus" : [ {
 			"menuid" : "211",
-			"menuname" : "团队基本信息维护",
+			"menuname" : "企业基本信息维护",
 			"icon" : "icon-nav",
 			"url" : "#"
 		}, {
@@ -70,52 +70,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}, {
 		"menuid" : "20",
 		"icon" : "icon-sys",
-		"menuname" : "成果发布",
+		"menuname" : "项目管理",
 		"menus" : [ {
 			"menuid" : "211",
-			"menuname" : "原创成果发布",
+			"menuname" : "项目总览",
 			"icon" : "icon-nav",
 			"url" : "#"
 		}, {
 			"menuid" : "213",
-			"menuname" : "创客项目报名",
+			"menuname" : "项目申报",
 			"icon" : "icon-nav",
 			"url" : "#"
 		}, {
 			"menuid" : "213",
-			"menuname" : "发布成果管理",
+			"menuname" : "阶段管理",
+			"icon" : "icon-nav",
+			"url" : "#"
+		}, {
+			"menuid" : "213",
+			"menuname" : "成果管理",
+			"icon" : "icon-nav",
+			"url" : "#"
+		}, {
+			"menuid" : "213",
+			"menuname" : "结题管理",
 			"icon" : "icon-nav",
 			"url" : "#"
 		} ]
-	}, {
+	},  {
 		"menuid" : "20",
 		"icon" : "icon-sys",
-		"menuname" : "合作需求",
-		"menus" : [ {
-			"menuid" : "211",
-			"menuname" : "合作意向提交",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "我的合作意向",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "寻求合作",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "我的合作申请",
-			"icon" : "icon-nav",
-			"url" : "#"
-		} ]
-	} , {
-		"menuid" : "20",
-		"icon" : "icon-sys",
-		"menuname" : "政策与帮助",
+		"menuname" : "信息与公告",
 		"menus" : [ {
 			"menuid" : "211",
 			"menuname" : "国家科技政策",
@@ -123,12 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"url" : "#"
 		}, {
 			"menuid" : "213",
-			"menuname" : "政府培训通知",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "银行资金援助项目",
+			"menuname" : "专项与基金",
 			"icon" : "icon-nav",
 			"url" : "#"
 		}, {

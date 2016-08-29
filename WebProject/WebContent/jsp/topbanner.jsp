@@ -41,9 +41,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="biaoti" align="right" style="font-size:36px;font-weight:bold;color:#0033FF;">
 			大连市智慧科技云服务平台</div>
 			<ul id="navmenu">
-			<li><img alt="" src="<%=request.getContextPath()%>/image/05.jpg" style="float:left; margin-left:20px; margin-top:-1px" height="20px" width="20px"><a onclick="logout()" href="<%=request.getContextPath()%>/logout.do">退出系统</a></li>
-			<li><img alt="" src="<%=request.getContextPath()%>/image/03.jpg" style="float:left; margin-left:20px; margin-top:-1px" height="20px" width="20px"><a href="<%=request.getContextPath()%>/jsp/maker/repassword.jsp"  id="editpass" target="PageFrame">修改密码</a></li>
-			<li><img alt="" src="<%=request.getContextPath()%>/image/01.jpg" style="float:left; margin-left:35px; margin-top:-1px" height="20px" width="20px"><a href="<%=request.getContextPath()%>/jsp/maker/loging.jsp"  target="PageFrame">主页</a></li>
+			<li><img alt="" src="<%=request.getContextPath()%>/image/05.jpg" style="float:left; margin-left:20px; margin-top:-1px" height="20px" width="20px"><a onclick="return logout();" href="<%=request.getContextPath()%>/logout.do">退出系统</a></li>
+			<li><img alt="" src="<%=request.getContextPath()%>/image/03.jpg" style="float:left; margin-left:20px; margin-top:-1px" height="20px" width="20px"><a href="<%=request.getContextPath()%>/jsp/repassword.jsp"  id="editpass" target="PageFrame">修改密码</a></li>
+			<li><img alt="" src="<%=request.getContextPath()%>/image/01.jpg" style="float:left; margin-left:35px; margin-top:-1px" height="20px" width="20px"><a href="<%=request.getContextPath()%>/homepagego.do"  target="PageFrame">主页</a></li>
 			</ul>
 			</div>
 		<div class="navbg">

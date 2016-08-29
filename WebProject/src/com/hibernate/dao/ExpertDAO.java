@@ -9,6 +9,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.hibernate.beans.Expert;
+import com.hibernate.beans.Maker;
 
 
 
@@ -50,4 +51,15 @@ public class ExpertDAO extends HibernateDaoSupport implements IExpertDAO{
 			return null;
 		}
 	}
+	
+	public Expert getExpertbyID(String userid) {
+		return (Expert) getHibernateTemplate().get(Expert.class,
+				new Integer(userid));
+	}
+	public void resetPassword(int id,String np){
+		Expert mk=this.getExpertbyID(Integer.toString(id));
+		mk.setPassword(np);
+		getHibernateTemplate().update(mk);
+	}
+	
 }

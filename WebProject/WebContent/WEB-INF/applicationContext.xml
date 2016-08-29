@@ -38,6 +38,7 @@
 				<value>com/hibernate/beans/Field.hbm.xml</value>
 				<value>com/hibernate/beans/Channel.hbm.xml</value>
 				<value>com/hibernate/beans/Makernews.hbm.xml</value>
+				<value>com/hibernate/beans/Makerproject.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -233,6 +234,28 @@
 			</props>
 		</property>
 	</bean>	
+	
+	<bean id="makerprojectDAO" class="com.login.MakerProjectDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="MakerProjectDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="makerprojectDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
+	
 	<bean id="loginMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -261,6 +284,9 @@
 			</property>
 			<property name="makernewsDAO">
 			<ref local="makernewsDAO" />
+			</property>
+			<property name="makerprojectDAO">
+			<ref local="makerprojectDAO" />
 			</property>
 			<!-- 指定验证类 -->
 
@@ -442,7 +468,7 @@
 		</property>
 	</bean>	
 		<bean id="LogOutAction"
-			class="com.loging.LogOutAction">
+			class="com.maker.loging.LogOutAction">
 	</bean>	
 	<!--创客密码重置  -->
 	<bean id="RePasswordMapping"
@@ -459,13 +485,31 @@
 			<property name="commandClass">
 				<value>com.repassword.RePasswordForm</value>
 			</property>
+			<property name="expertDAO">
+			<ref local="expertDAO" />
+			</property>
+			<property name="enterpriseDAO">
+			<ref local="enterpriseDAO" />
+			</property>
 			<property name="makerDAO">
 			<ref local="makerDAO" />
 			</property>
-			<property name="successView">
-				<value>/maker/loging</value>
+			<property name="governmentDAO">
+			<ref local="governmentDAO" />
 			</property>
 	</bean>	
+	<!--主页跳转  -->
+		<bean id="HomePageGoMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/homepagego.do">HomePageGoAction</prop>
+			</props>
+		</property>
+	</bean>	
+		<bean id="HomePageGoAction"
+			class="com.topbanner.HomePageGoAction">
+	</bean>		
 	<!--主页新闻加载  -->
 
 <!-- 	<bean id="MakerNewsMapping"

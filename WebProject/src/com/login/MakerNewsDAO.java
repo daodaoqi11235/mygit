@@ -29,6 +29,20 @@ public class MakerNewsDAO extends HibernateDaoSupport{
 
 		return list;
 	}
+	public List getTraining() {
+		System.out.println("N_policy");
+		@SuppressWarnings("rawtypes")
+		List list = (List) getHibernateTemplate().execute(new HibernateCallback() {
+			public Object doInHibernate(Session session)
+					throws HibernateException {
+				List result = session.createCriteria(Makernews.class).add(
+						Restrictions.eq("type", "政府培训通知")).addOrder(Order.desc("time")).setMaxResults(5).list();
+				return result;
+			}
+		});
+
+		return list;
+	}
 	public List getAnnouncement() {
 		@SuppressWarnings("rawtypes")
 		List list = (List) getHibernateTemplate().execute(new HibernateCallback() {

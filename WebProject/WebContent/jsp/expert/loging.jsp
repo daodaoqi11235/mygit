@@ -1,8 +1,6 @@
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="java.util.List"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="com.hibernate.beans.Makernews"%>
-<%@ page import="com.hibernate.beans.Makerproject"%>
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
@@ -146,9 +144,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
  
- <form method="post" action="<%=request.getContextPath()%>/jsp/test1.jsp" id="form1" name="form1">
+ <form method="post" action="#" id="form1" name="form1">
 
-   <input type="hidden" name="newsId" id="newsId" value="" />
+   <input type="hidden" name="newId" id="newsId" value="" />
 
     <div>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -163,14 +161,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="maintitlebg">
                                     <span><a href="#">更多>></a></span><div></div><div class="title1icon">
                                     </div>
-                                    创客项目</div>
+                                    咨询问题回复</div>
                                 <div class="titlebox">
                                     <ul>
-                                    <%List  list1= (ArrayList)request.getSession().getAttribute("makerproject");
-    								for(int i=0;i<list1.size();i++){
-    									Makerproject mn = (Makerproject)list1.get(i); %>
-										<li><span><%=DateFormat.getDateInstance().format(mn.getStartTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="Makerproject+<%=mn.getMakerProjectId()%>"><%=mn.getTitle()%></a></li>
-										<%}%>
+
                                     </ul>
                                 </div>
                                 <!--国家科技政策End-->
@@ -189,7 +183,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     								for(int i=0;i<list2.size();i++){
     									Makernews mn = (Makernews)list2.get(i); %>
 										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="Makernews+<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
-										<%}%>                                	
+										<%}%>   
                                     </ul>
                                 </div>
                                 <!--系统公告 End-->
@@ -202,16 +196,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <span><a href="#">更多>></a></span><div class="title2icon">
                                     	<img alt="" src="<%=request.getContextPath()%>/image/32.jpg" style="float:left;margin-right:9px; margin-left:0px;" width="30px" height="30px">
                                     </div>
-                                    政府培训通知</div>
+                                    创客项目评审</div>
                                 <div class="titlebox">
                                     <ul>
-                                       <ul>
-                                     <%List  list3= (ArrayList)request.getSession().getAttribute("training");
-    								for(int i=0;i<list3.size();i++){
-    									Makernews mn = (Makernews)list3.get(i); %>
-										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="Makernews+<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
-										<%}%>                                	
-                                    </ul>                                  
+
                                     </ul>
                                 </div>
                                 <!-- 专项与基金End-->
@@ -222,14 +210,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     <span><a href="#">更多>></a></span><div class="title3icon">
                                     	<img alt="" src="<%=request.getContextPath()%>/image/34.jpg"  style="float:left;margin-right:9px; margin-left:0px;" width="30px" height="30px">
                                     </div>
-                                  银行资金援助项目</div>
+                                 企业项目立项评审</div>
                                 <div class="titlebox" style="height: 135px;">
                                     <ul>
-                                    <%List  list4= (ArrayList)request.getSession().getAttribute("b_policy");
-    								for(int i=0;i<list4.size();i++){
-    									Makernews mn = (Makernews)list4.get(i); %>
-										<li><span><%=DateFormat.getDateInstance().format(mn.getTime()) %></span><a href="javascript:void(document.form1.submit())" onclick="return setId(this.id);" id="Makernews+<%=mn.getMakerNewsId()%>"><%=mn.getTitle()%></a></li>
-										<%}%>                                       
+     
                                     </ul>
                                 </div>
                                 <!-- 银行资金援助项目 End-->
@@ -245,13 +229,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="srortcut4box" style="margin-top: 10px;">
                         <ul>
                             <li><a href="#">
-                                <img src="<%=request.getContextPath()%>/image/21.jpg" style="position:relative;float:left; margin-left:35px;  margin-bottom:auto;margin-top:-15px;" height="50px" width="50px" />我的咨询</a></li>
+                                <img src="<%=request.getContextPath()%>/image/21.jpg" style="position:relative;float:left; margin-left:35px;  margin-bottom:auto;margin-top:-15px;" height="50px" width="50px" />咨询回复</a></li>
                             <li><a href="#">
-                                <img src="<%=request.getContextPath()%>/image/22.jpg" style="position:relative;float:left; margin-left:35px; margin-bottom:auto; margin-top:-15px" height="50px" width="50px" >我的成果</a></li>
+                                <img src="<%=request.getContextPath()%>/image/22.jpg" style="position:relative;float:left; margin-left:35px; margin-bottom:auto; margin-top:-15px" height="50px" width="50px" >创客项目评审</a></li>
                                 <li><a href="#">
-                                <img src="<%=request.getContextPath()%>/image/23.jpg" style="position:relative;float:left; margin-left:35px; margin-bottom:auto; margin-top:-15px" height="50px" width="50px" >我的合作</a></li>
+                                <img src="<%=request.getContextPath()%>/image/23.jpg" style="position:relative;float:left; margin-left:35px; margin-bottom:auto; margin-top:-15px" height="50px" width="50px" >企业项目评审</a></li>
                             <li><a href="#">
-                                <img src="<%=request.getContextPath()%>/image/23.jpg" style="position:relative;float:left; margin-left:35px; margin-bottom:auto; margin-top:-15px" height="50px" width="50px" >我的资料</a></li>
+                                <img src="<%=request.getContextPath()%>/image/23.jpg" style="position:relative;float:left; margin-left:35px; margin-bottom:auto; margin-top:-15px" height="50px" width="50px" >资料管理</a></li>
                         </ul>
                         <div class="clear">
                         </div>

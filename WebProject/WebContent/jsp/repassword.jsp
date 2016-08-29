@@ -57,7 +57,7 @@ function checkform(){
 	    <div class="topnav"  >
 		  <div class="path">
 		      <span ><font>当前位置:</font></span>
-		      <span ><font color="#66583D">团队信息管理<b>&nbsp; </b></font> &gt; <font color="#66583D"> 登录密码修改</font></span>
+		      <span ><font>基本信息管理&nbsp;&nbsp;  &gt;&nbsp;&nbsp; 登录密码修改</font></span>
 		    </div>
 		 </div> 
 		 

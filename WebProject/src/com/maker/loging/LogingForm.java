@@ -1,4 +1,4 @@
-package com.loging;
+package com.maker.loging;
 
 public class LogingForm {
 	private String newsID;

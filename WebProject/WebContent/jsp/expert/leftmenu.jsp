@@ -37,28 +37,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <script type="text/javascript">
 	var _menus = {
-	basic : [ {
-		"menuid" : "10",
-		"icon" : "icon-sys",
-		"menuname" : "专家咨询",
-		"menus" : [ {
-			"menuid" : "111",
-			"menuname" : "我的问题咨询",
-			"icon" : "icon-nav",
-			"url" : "https://www.baidu.com/"
-		}, {
-			"menuid" : "113",
-			"menuname" : "咨询问题提交",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}]
-	}, {
+	basic : [{
 		"menuid" : "20",
 		"icon" : "icon-sys",
 		"menuname" : "基本信息管理",
 		"menus" : [ {
 			"menuid" : "211",
-			"menuname" : "团队基本信息维护",
+			"menuname" : "基本信息查看",
+			"icon" : "icon-nav",
+			"url" : "#"
+		},{
+			"menuid" : "211",
+			"menuname" : "个人成果维护",
 			"icon" : "icon-nav",
 			"url" : "#"
 		}, {
@@ -70,74 +60,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}, {
 		"menuid" : "20",
 		"icon" : "icon-sys",
-		"menuname" : "成果发布",
+		"menuname" : "问题咨询",
 		"menus" : [ {
 			"menuid" : "211",
-			"menuname" : "原创成果发布",
+			"menuname" : "咨询问题回复",
 			"icon" : "icon-nav",
 			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "创客项目报名",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "发布成果管理",
-			"icon" : "icon-nav",
-			"url" : "#"
-		} ]
+		}]
 	}, {
 		"menuid" : "20",
 		"icon" : "icon-sys",
-		"menuname" : "合作需求",
+		"menuname" : "项目评审",
 		"menus" : [ {
 			"menuid" : "211",
-			"menuname" : "合作意向提交",
+			"menuname" : "创客项目评审",
 			"icon" : "icon-nav",
 			"url" : "#"
 		}, {
 			"menuid" : "213",
-			"menuname" : "我的合作意向",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "寻求合作",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "我的合作申请",
+			"menuname" : "企业项目评审",
 			"icon" : "icon-nav",
 			"url" : "#"
 		} ]
-	} , {
-		"menuid" : "20",
-		"icon" : "icon-sys",
-		"menuname" : "政策与帮助",
-		"menus" : [ {
-			"menuid" : "211",
-			"menuname" : "国家科技政策",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "政府培训通知",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "银行资金援助项目",
-			"icon" : "icon-nav",
-			"url" : "#"
-		}, {
-			"menuid" : "213",
-			"menuname" : "系统公告",
-			"icon" : "icon-nav",
-			"url" : "#"
-		} ]
-	}]
+	} ]
 };
 
  </script>
