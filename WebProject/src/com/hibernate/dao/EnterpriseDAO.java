@@ -47,7 +47,7 @@ public class EnterpriseDAO extends HibernateDaoSupport{
 		}
 	}
 	public void insertEnterprise(Enterprise ep) {
-		getHibernateTemplate().saveOrUpdate(ep);
+		getHibernateTemplate().save(ep);
 	}
 	
 	public Enterprise getEnterprise(final String username) {

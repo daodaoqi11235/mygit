@@ -43,14 +43,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		"menuname" : "基本信息管理",
 		"menus" : [ {
 			"menuid" : "211",
-			"menuname" : "基本信息查看",
+			"menuname" : "基本信息维护",
 			"icon" : "icon-nav",
-			"url" : "#"
-		},{
-			"menuid" : "211",
-			"menuname" : "个人成果维护",
-			"icon" : "icon-nav",
-			"url" : "#"
+			"url" : "<%=request.getContextPath()%>/expertinformationgo.do"
 		}, {
 			"menuid" : "213",
 			"menuname" : "登录密码修改",

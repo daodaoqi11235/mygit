@@ -510,6 +510,42 @@
 		<bean id="HomePageGoAction"
 			class="com.topbanner.HomePageGoAction">
 	</bean>		
+	<!--专家基本信息维护跳转  -->
+	<bean id="ExpertInformationGoMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/expertinformationgo.do">ExpertInformationGoAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="ExpertInformationGoAction"
+			class="com.expert.informationupdate.ExpertInformationGoAction">
+			<property name="expertDAO">
+			<ref local="expertDAO" />
+			</property>
+	</bean>	
+	<!--专家基本信息维护更新  -->
+	<bean id="ExpertInformationUpdateMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/expertinformationupdate.do">ExpertInformationUpdateAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="ExpertInformationUpdateAction"
+			class="com.expert.informationupdate.ExpertInformationUpdateAction">
+			<property name="expertDAO">
+			<ref local="expertDAO" />
+			</property>
+			<property name="commandClass">
+				<value>com.expert.informationupdate.InformationUpdateForm</value>
+			</property>
+			<property name="successView">
+				<value>expert/personalityPage</value>
+			</property>
+	</bean>	
 	<!--主页新闻加载  -->
 
 <!-- 	<bean id="MakerNewsMapping"

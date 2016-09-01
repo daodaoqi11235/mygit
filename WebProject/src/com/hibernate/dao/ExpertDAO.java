@@ -53,12 +53,19 @@ public class ExpertDAO extends HibernateDaoSupport implements IExpertDAO{
 	}
 	
 	public Expert getExpertbyID(String userid) {
-		return (Expert) getHibernateTemplate().get(Expert.class,
-				new Integer(userid));
+		Expert exp=(Expert) getHibernateTemplate().get(Expert.class,new Integer(userid));
+		System.out.println(exp.getLoginName());
+		return exp;
 	}
 	public void resetPassword(int id,String np){
 		Expert mk=this.getExpertbyID(Integer.toString(id));
 		mk.setPassword(np);
+		getHibernateTemplate().update(mk);
+	}
+	
+	public void upadateDescription(int id,String np){
+		Expert mk=this.getExpertbyID(Integer.toString(id));
+		mk.setAchievement(np);
 		getHibernateTemplate().update(mk);
 	}
 	

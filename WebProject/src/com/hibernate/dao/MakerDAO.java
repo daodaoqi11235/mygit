@@ -49,7 +49,7 @@ public class MakerDAO extends HibernateDaoSupport{
 		}
 	}
 	public void insertMaker(Maker mk) {
-		getHibernateTemplate().saveOrUpdate(mk);
+		getHibernateTemplate().save(mk);
 	}
 	
 	public Maker getMaker(final String username) {

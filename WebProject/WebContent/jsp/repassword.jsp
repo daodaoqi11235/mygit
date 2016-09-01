@@ -70,31 +70,32 @@ function checkform(){
 	     		
 	     		<div class="tablebox">
 	     			
-	     			<table style="width:100%;" cellpadding="0" cellspacing="0" border="0">
-	     				<tr><td>&nbsp;</td></tr>
+	     			<table style="width:100%;border:solid #B8B8B8; border-width:0px 1px 1px 1px; ">
+	     			<tr><td>&nbsp;</td></tr>
 	     				<tr>
 	     					<td class="tdname">当前用户名:</td>
 	     					<td class="tdcontent"><%=request.getSession().getAttribute("loginname")%></td>
 	     				</tr>
 	     				<tr>
-	     					<td class="tdname">旧密码:</td>
+	     					<td class="tdname">旧&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码:</td>
 	     					<td class="tdcontent"><input class="easyui-textbox" type="password" id="oldp" name="oldp" style="width:90%;"></td>
 	     				</tr>
 	     				<tr>
-	     					<td class="tdname">新密码:</td>
+	     					<td class="tdname">新&nbsp;&nbsp;&nbsp;&nbsp;密&nbsp;&nbsp;&nbsp;&nbsp;码:</td>
 	     					<td class="tdcontent"><input class="easyui-textbox" type="password" id="newp" name="newp" style="width:90%;"></td>
 	     				</tr>
 	     				<tr>
-	     					<td class="tdname">密码确认:</td>
+	     					<td class="tdname">密&nbsp;码&nbsp;&nbsp;确&nbsp;认:</td>
 	     					<td class="tdcontent"><input class="easyui-textbox" type="password" id="againp" name="againp" style="width:90%;"></td>
 	     				</tr>
 	     				<tr><td>&nbsp;</td></tr>
+	     				<tr><td style="text-align:center;" colspan="2"><a href="javascript:void(document.reform.submit())" class="easyui-linkbutton button" onclick="return checkform();">保&nbsp;&nbsp;存</a></td></tr>
+	     				<tr><td>&nbsp;</td></tr>
+	     				
 	     			</table>
 	     			
 	     		</div>
-	     		<div style="position:absolute;right:0px;top:190px ; padding-top:10px;">
-	     			<a href="javascript:void(document.reform.submit())" class="easyui-linkbutton button" onclick="return checkform();">保&nbsp;&nbsp;存</a>
-	     		</div>
+	     		
 	     	</div>
 	     </form>
 	     </div>   
