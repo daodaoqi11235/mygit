@@ -34,6 +34,7 @@
 				<value>com/base/hibernate/beans/Login.hbm.xml</value>
 				<value>com/base/hibernate/beans/Fujian.hbm.xml</value>
 				<value>com/base/hibernate/beans/Enum.hbm.xml</value>
+				<value>com/base/hibernate/beans/Datagrid.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -382,4 +383,59 @@
 	<bean id="ComboAction"
 			class="com.base.spring.actions.ComboAction">
 	</bean>	
+	<!-- href传参数 -->
+		<bean id="hrefMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/hrefgo.do">HrefGoAction</prop>
+			</props>
+			</property>
+	</bean>
+	
+	<bean id="HrefGoAction"
+			class="com.base.spring.actions.HrefGoAction">
+	</bean>	
+	<!--datagrid载入  -->
+	
+
+	<bean id="datagridDAO" class="com.base.hibernate.dao.DatagridDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>	
+	
+	<bean id="DataGridDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="datagridDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+	
+			<bean id="loaddatagridMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/loaddatagrid.do">LoadDataGridAction</prop>
+			</props>
+			</property>
+	</bean>
+	
+	<bean id="LoadDataGridAction"
+			class="com.base.spring.actions.LoadDataGridAction">
+			<property name="gdDAO">
+			<ref local="datagridDAO" />
+			</property>
+	</bean>	
+	
+	
 </beans>
