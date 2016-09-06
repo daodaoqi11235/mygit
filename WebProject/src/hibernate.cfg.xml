@@ -17,5 +17,9 @@
   <mapping resource="com/hibernate/beans/Channel.hbm.xml"/>
   <mapping resource="com/hibernate/beans/Makernews.hbm.xml"/>
   <mapping resource="com/hibernate/beans/Makerproject.hbm.xml"/>
+  <mapping resource="com/hibernate/beans/Expertqa.hbm.xml"/>
+  <mapping resource="com/hibernate/beans/Intermediateinspection.hbm.xml"/>
+  <mapping resource="com/hibernate/beans/Intermediateinspectioninfo.hbm.xml"/>
+  <mapping resource="com/hibernate/beans/Coverofintermediateinspection.hbm.xml"/>
  </session-factory>
 </hibernate-configuration>

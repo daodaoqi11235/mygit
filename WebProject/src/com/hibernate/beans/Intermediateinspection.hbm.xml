@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-3 16:59:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Intermediateinspection" table="intermediateinspection" >
+        <id name="coverOfIntermediateInspectionId" type="int">
+            <column name="CoverOfIntermediateInspectionID" />
+            <generator class="assigned" />
+        </id>
+        <property name="p1" type="string">
+            <column name="P1" />
+        </property>
+        <property name="p2" type="string">
+            <column name="P2" />
+        </property>
+        <property name="p3" type="string">
+            <column name="P3" />
+        </property>
+        <property name="p4" type="string">
+            <column name="P4" />
+        </property>
+        <property name="p5" type="date">
+            <column name="P5" length="0" />
+        </property>
+        <property name="p6" type="date">
+            <column name="P6" length="0" />
+        </property>
+        <property name="p7" type="date">
+            <column name="P7" length="0" />
+        </property>
+        <property name="p8" type="string">
+            <column name="P8" length="65535" />
+        </property>
+        <property name="p9" type="string">
+            <column name="P9" length="65535" />
+        </property>
+    </class>
+</hibernate-mapping>

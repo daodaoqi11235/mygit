@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-6 20:38:39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Coverofintermediateinspection" table="coverofintermediateinspection" >
+        <id name="coverOfIntermediateInspectionId" type="java.lang.Integer">
+            <column name="CoverOfIntermediateInspectionID" />
+            <generator class="identity" />
+        </id>
+        <property name="n1" type="string">
+            <column name="N1" />
+        </property>
+        <property name="n2" type="string">
+            <column name="N2" />
+        </property>
+        <property name="n3" type="string">
+            <column name="N3" />
+        </property>
+        <property name="n4" type="string">
+            <column name="N4" />
+        </property>
+        <property name="n5" type="string">
+            <column name="N5" />
+        </property>
+        <property name="n6" type="string">
+            <column name="N6" />
+        </property>
+        <property name="n7" type="string">
+            <column name="N7" />
+        </property>
+        <property name="n8" type="string">
+            <column name="N8" />
+        </property>
+        <property name="isEdit" type="java.lang.Boolean">
+            <column name="isEdit" />
+        </property>
+        <property name="enterpriseProjectId" type="java.lang.Integer">
+            <column name="EnterpriseProjectID" />
+        </property>
+        <property name="date" type="date">
+            <column name="Date" length="0" />
+        </property>
+        <property name="state" type="java.lang.Integer">
+            <column name="State" />
+        </property>
+        <property name="governmentId" type="java.lang.Integer">
+            <column name="GovernmentID" />
+        </property>
+    </class>
+</hibernate-mapping>

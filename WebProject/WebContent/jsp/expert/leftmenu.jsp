@@ -75,7 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"menuid" : "213",
 			"menuname" : "企业项目评审",
 			"icon" : "icon-nav",
-			"url" : "#"
+			"url" : "<%=request.getContextPath()%>/intermediateinspectiongo.do"
 		} ]
 	} ]
 };

@@ -39,6 +39,10 @@
 				<value>com/hibernate/beans/Channel.hbm.xml</value>
 				<value>com/hibernate/beans/Makernews.hbm.xml</value>
 				<value>com/hibernate/beans/Makerproject.hbm.xml</value>
+				<value>com/hibernate/beans/Expertqa.hbm.xml</value>
+				<value>com/hibernate/beans/Intermediateinspection.hbm.xml</value>
+				<value>com/hibernate/beans/Intermediateinspectioninfo.hbm.xml</value>
+				<value>com/hibernate/beans/Coverofintermediateinspection.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -542,10 +546,159 @@
 			<property name="commandClass">
 				<value>com.expert.informationupdate.InformationUpdateForm</value>
 			</property>
-			<property name="successView">
-				<value>expert/personalityPage</value>
+	</bean>	
+	<!--专家问题回复  -->
+	<bean id="expertqaDAO" class="com.expert.response.ExpertqaDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="ExperqaDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="expertqaDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	<bean id="ExpertResponseMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/expertresponse.do">ExpertResponseAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="ExpertResponseAction"
+			class="com.expert.response.ExpertResponseAction">
+			<property name="expertqaDAO">
+			<ref local="expertqaDAO" />
 			</property>
 	</bean>	
+	
+	<!--中期检测意见表  -->
+	<bean id="intermediateinspectionDAO" class="com.expert.intermediateinspection.IntermediateinspectionDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="IntermediateinspectionDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="intermediateinspectionDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
+	
+		<bean id="coverofintermediateinspectionDAO" class="com.expert.intermediateinspection.CoverofintermediateinspectionDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="CoverofintermediateinspectionDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="coverofintermediateinspectionDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	<bean id="intermediateinspectioninfoDAO" class="com.expert.intermediateinspection.IntermediateinspectioninfoDAO">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="IntermediateinspectioninfoDAOProxy"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<property name="target">
+			<ref local="intermediateinspectioninfoDAO" />
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	
+	
+	
+	<bean id="IntermediateInspectionMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/intermediateinspection.do">intermediateinspectionAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="intermediateinspectionAction"
+			class="com.expert.intermediateinspection.IntermediateInspectionAction">
+
+			<property name="intermediateinspectionDAO">
+			<ref local="intermediateinspectionDAO" />
+			</property>
+	<property name="coiiDAO">
+			<ref local="coverofintermediateinspectionDAO" />
+			</property>
+	</bean>			
+
+
+	<!--项目中期评审跳转  -->
+	
+
+	
+	
+	
+	<bean id="IntermediateInspectionGoMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/intermediateinspectiongo.do">intermediateinspectionGoAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="intermediateinspectionGoAction"
+			class="com.expert.intermediateinspection.IntermediateInspectionGoAction">
+
+			<property name="intermediateinspectionDAO">
+			<ref local="intermediateinspectionDAO" />
+			</property>
+			<property name="coiiDAO">
+			<ref local="coverofintermediateinspectionDAO" />
+			</property>
+			<property name="iiiDAO">
+			<ref local="intermediateinspectioninfoDAO" />
+			</property>
+	</bean>		
+	
 	<!--主页新闻加载  -->
 
 <!-- 	<bean id="MakerNewsMapping"

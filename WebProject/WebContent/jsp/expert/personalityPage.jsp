@@ -64,7 +64,7 @@
      <div class="topnav"  >
 	   <div  class="path" >
 	      <span ><font>当前位置:</font></span>
-	      <span ><font >基本信息管理&nbsp;&nbsp; &gt;&nbsp;&nbsp; 个人基本信息查看与维护</font></span>
+	      <span ><font >基本信息管理&nbsp;&nbsp; &gt;&nbsp;&nbsp; 基本信息维护</font></span>
 	   </div>
      </div> 
 	

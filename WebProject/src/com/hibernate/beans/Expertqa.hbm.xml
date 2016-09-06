@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-1 17:16:04 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Expertqa" table="expertqa">
+        <id name="questionId" type="java.lang.Integer">
+            <column name="QuestionID" />
+            <generator class="identity" />
+        </id>
+        <property name="id" type="java.lang.Integer">
+            <column name="ID" />
+        </property>
+        <property name="qdescription" type="string">
+            <column name="QDescription" length="65535" />
+        </property>
+        <property name="qtime" type="timestamp">
+            <column name="QTime" length="0" />
+        </property>
+        <property name="field" type="string">
+            <column name="Field" />
+        </property>
+        <property name="expertId" type="java.lang.Integer">
+            <column name="ExpertID" />
+        </property>
+        <property name="atime" type="timestamp">
+            <column name="ATime" length="0" />
+        </property>
+        <property name="adescription" type="string">
+            <column name="ADescription" length="65535" />
+        </property>
+        <property name="state" type="java.lang.Integer">
+            <column name="State" />
+        </property>
+        <property name="fee" type="string">
+            <column name="Fee" />
+        </property>
+        <property name="isPayed" type="java.lang.Boolean">
+            <column name="isPayed" />
+        </property>
+        <property name="payTime" type="timestamp">
+            <column name="PayTime" length="0" />
+        </property>
+        <property name="roleId" type="java.lang.Integer">
+            <column name="RoleID" />
+        </property>
+    </class>
+</hibernate-mapping>

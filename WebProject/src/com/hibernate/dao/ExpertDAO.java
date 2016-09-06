@@ -54,7 +54,6 @@ public class ExpertDAO extends HibernateDaoSupport implements IExpertDAO{
 	
 	public Expert getExpertbyID(String userid) {
 		Expert exp=(Expert) getHibernateTemplate().get(Expert.class,new Integer(userid));
-		System.out.println(exp.getLoginName());
 		return exp;
 	}
 	public void resetPassword(int id,String np){

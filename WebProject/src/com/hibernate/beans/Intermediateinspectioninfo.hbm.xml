@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2016-9-6 20:38:39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.hibernate.beans.Intermediateinspectioninfo" table="intermediateinspectioninfo" >
+        <id name="coverOfIntermediateInspection" type="int">
+            <column name="CoverOfIntermediateInspection" />
+            <generator class="assigned" />
+        </id>
+        <property name="o1" type="string">
+            <column name="O1" />
+        </property>
+        <property name="o2" type="string">
+            <column name="O2" />
+        </property>
+        <property name="o3" type="string">
+            <column name="O3" />
+        </property>
+        <property name="o4" type="string">
+            <column name="O4" />
+        </property>
+        <property name="o5" type="string">
+            <column name="O5" />
+        </property>
+        <property name="o6" type="string">
+            <column name="O6" />
+        </property>
+        <property name="o7" type="string">
+            <column name="O7" />
+        </property>
+        <property name="o8" type="string">
+            <column name="O8" />
+        </property>
+        <property name="o9" type="string">
+            <column name="O9" />
+        </property>
+        <property name="o10" type="string">
+            <column name="O10" />
+        </property>
+        <property name="o11" type="string">
+            <column name="O11" />
+        </property>
+        <property name="o12" type="string">
+            <column name="O12" />
+        </property>
+        <property name="o13" type="string">
+            <column name="O13" />
+        </property>
+        <property name="o14" type="string">
+            <column name="O14" />
+        </property>
+        <property name="o15" type="string">
+            <column name="O15" />
+        </property>
+        <property name="o16" type="string">
+            <column name="O16" />
+        </property>
+        <property name="o17" type="string">
+            <column name="O17" />
+        </property>
+        <property name="o18" type="string">
+            <column name="O18" />
+        </property>
+        <property name="o19" type="string">
+            <column name="O19" />
+        </property>
+        <property name="o20" type="string">
+            <column name="O20" />
+        </property>
+        <property name="o21" type="string">
+            <column name="O21" />
+        </property>
+        <property name="o22" type="string">
+            <column name="O22" />
+        </property>
+        <property name="o23" type="string">
+            <column name="O23" />
+        </property>
+        <property name="o24" type="string">
+            <column name="O24" />
+        </property>
+        <property name="o25" type="string">
+            <column name="O25" />
+        </property>
+        <property name="o26" type="string">
+            <column name="O26" />
+        </property>
+        <property name="o27" type="string">
+            <column name="O27" />
+        </property>
+        <property name="o28" type="string">
+            <column name="O28" />
+        </property>
+        <property name="o29" type="string">
+            <column name="O29" />
+        </property>
+        <property name="o30" type="string">
+            <column name="O30" />
+        </property>
+        <property name="o31" type="string">
+            <column name="O31" />
+        </property>
+        <property name="o32" type="string">
+            <column name="O32" />
+        </property>
+        <property name="o33" type="string">
+            <column name="O33" />
+        </property>
+        <property name="o34" type="string">
+            <column name="O34" />
+        </property>
+        <property name="o35" type="string">
+            <column name="O35" />
+        </property>
+        <property name="o36" type="string">
+            <column name="O36" />
+        </property>
+        <property name="o37" type="string">
+            <column name="O37" />
+        </property>
+        <property name="o38" type="string">
+            <column name="O38" />
+        </property>
+        <property name="o39" type="string">
+            <column name="O39" />
+        </property>
+        <property name="o40" type="string">
+            <column name="O40" />
+        </property>
+        <property name="o41" type="string">
+            <column name="O41" />
+        </property>
+        <property name="o42" type="string">
+            <column name="O42" />
+        </property>
+        <property name="o43" type="string">
+            <column name="O43" />
+        </property>
+        <property name="o44" type="string">
+            <column name="O44" />
+        </property>
+        <property name="o45" type="string">
+            <column name="O45" />
+        </property>
+        <property name="o46" type="string">
+            <column name="O46" />
+        </property>
+        <property name="o47" type="string">
+            <column name="O47" />
+        </property>
+        <property name="o48" type="string">
+            <column name="O48" />
+        </property>
+        <property name="o49" type="string">
+            <column name="O49" />
+        </property>
+    </class>
+</hibernate-mapping>
