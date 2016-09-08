@@ -39,4 +39,11 @@ public class CoverofintermediateinspectionDAO extends HibernateDaoSupport{
 		coii.setN8(s[2]);
 		getHibernateTemplate().update(coii);
 	}
+	
+	public void StatetoCommit(final int CoverID){
+		Coverofintermediateinspection coii=this.getCover(CoverID);
+		coii.setIsEdit(false);
+		coii.setState(3);
+		getHibernateTemplate().update(coii);
+	}
 }

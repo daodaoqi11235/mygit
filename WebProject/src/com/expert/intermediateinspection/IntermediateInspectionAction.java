@@ -42,14 +42,17 @@ public class IntermediateInspectionAction implements Controller{
 		iiori.setP7(sdf.parse(arg0.getParameter("ctime")));
 		iiori.setP8(arg0.getParameter("presention"));
 		iiori.setP9(arg0.getParameter("advice"));
-		coiiDAO.updatecoii((String )arg0.getParameter("expl"),(String )arg0.getParameter("wtime"), 1);
-//		if(iiform.getSort().equals("submit")){
-//			System.out.println("submit"+iiform.getSort());  //¸ü¸Ä¿É±à¼­×´Ì¬
-//		}
-//		else{
-//			System.out.println("submit"+iiform.getSort());
-//		}
-		intermediateinspectionDAO.updateIntermediateinspection(iiori);
+		
+		if(arg0.getParameter("sort").equals("submit")){
+			coiiDAO.StatetoCommit(1);
+			coiiDAO.updatecoii((String )arg0.getParameter("expl"),(String )arg0.getParameter("wtime"), 1);
+			intermediateinspectionDAO.updateIntermediateinspection(iiori);
+		}
+		else{
+			intermediateinspectionDAO.updateIntermediateinspection(iiori);
+			coiiDAO.updatecoii((String )arg0.getParameter("expl"),(String )arg0.getParameter("wtime"), 1);
+		}
+		
 		return new ModelAndView("forward:/intermediateinspectiongo.do");
 	}
 
