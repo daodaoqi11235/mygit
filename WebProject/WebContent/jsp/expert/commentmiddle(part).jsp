@@ -93,6 +93,14 @@ function save(){
 		return false;
 	}
 }
+function check(){
+	if(confirm("导出前须保存表单内容\n\n是否现在导出？")){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
 function sub(){
 	var wtime=$("#wtime").datebox("getValue");
 	var stime=$("#stime").datebox("getValue");
@@ -222,7 +230,7 @@ function sub(){
                 <table class="persional" align="center" border="1" cellpadding="0" cellspacing="0" bordercolor="#DEE5EA" >
                 <tr>
                 
-	   			<td colspan="4" class="tdtitle" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二、项目进展情况</td>
+	   			<td colspan="2" class="tdtitle" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;二、项目进展情况</td>
 	   			</tr>
 	   			 <tr >
                     <td class="tdname">进展情况：</td>                    
@@ -496,7 +504,7 @@ function sub(){
 	             	<div style="margin-top:20px; left:40%; margin-bottom:20px;float:left; position:relative" ><a href="javascript:void(document.Form1.submit())" style="height:35px;width:70px;font-size:16px;" class="easyui-linkbutton button" onclick="return sub();">提&nbsp;&nbsp;交</a>
 	             	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="javascript:void(document.Form1.submit())" style="height:35px;width:70px;font-size:16px" class="easyui-linkbutton button" onclick="return save();">保&nbsp;&nbsp;存</a></div>
-		            <div style="margin-top:20px; margin-bottom:20px;float:right; position:relative; right:20px"><a href="javascript:void(document.Form1.submit())" style="height:35px;width:100px;font-size:16px" class="easyui-linkbutton button" onclick="return save();">导出为word</a></div>
+		            <div style="margin-top:20px; margin-bottom:20px;float:right; position:relative; right:20px"><a href="<%=request.getContextPath() %>/commitmiddledownload.do" style="height:35px;width:100px;font-size:16px" class="easyui-linkbutton button" onclick="return check();">导出为word</a></div>
 		            
 		        </td>
 	        </tr>

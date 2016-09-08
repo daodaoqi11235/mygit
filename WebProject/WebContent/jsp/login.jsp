@@ -79,7 +79,7 @@ function changecode(){
 			<form  method="post" action="<%=request.getContextPath()%>/login.do" id="login_Form"> <!-- action填目标文件地址 -->
 				<table width="350" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td width="60" height="40" align="left">账号类型</td>
+						<td width="60" height="40" align="right">账号类型&nbsp;</td>
 						<td><select id="role"  name="role" style="width:180px;">
  								<option value="expert">专家用户</option>
 								<option value="maker">创客用户</option>
@@ -88,15 +88,15 @@ function changecode(){
  							</select></td>
 					</tr>
 					<tr>
-						<td height="40" align="left">用户名</td>
+						<td height="40" align="right">用户名&nbsp;</td>
 						<td><input class="easyui-textbox" type="text" name="login_username" id="login_username" style="width:180px;"></td>
 					</tr>
 					<tr>
-						<td height="40" align="left">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
+						<td height="40" align="right">密码&nbsp;</td>
 						<td><input class="easyui-textbox" type="password" name="login_password" id="login_password" style="width:180px;"></td>
 					</tr>
 					<tr>
-						<td height="40" align="left">验&nbsp;证&nbsp;码</td>
+						<td height="40" align="right">验证码&nbsp;</td>
 						<td align="left" height="40"><input class="easyui-textbox" type="text" name="login_code" id="login_code" style="width:80px;">&nbsp;<img align=center alt="刷新" id="kaptchaImage" src="<%=request.getContextPath()%>/kaptcha.do" style="cursor:pointer;" onclick="changecode()"/> <a href="Javascript:void(0);"  onclick="changecode()" style="font-size:8pt;">看不清？</a></td>
 					</tr>
 					<tr>

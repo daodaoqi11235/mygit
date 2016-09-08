@@ -673,10 +673,6 @@
 
 	<!--项目中期评审跳转  -->
 	
-
-	
-	
-	
 	<bean id="IntermediateInspectionGoMapping"
 		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings">
@@ -698,6 +694,64 @@
 			<ref local="intermediateinspectioninfoDAO" />
 			</property>
 	</bean>		
+	
+	<!-- expertqa datagrid load -->
+	<bean id="loadexpertqagridMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/loadexpertqagrid.do">loadexpertqagridAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="loadexpertqagridAction"
+			class="com.expert.response.LoadExpertqaGridAction">
+			<property name="expertqaDAO">
+			<ref local="expertqaDAO" />
+			</property>
+	</bean>	
+	
+	<!--expertresponsego 专家回答跳转  -->
+	<bean id="expertresponsegoMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/expertresponsego.do">expertresponsegoAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="expertresponsegoAction"
+			class="com.expert.response.ExpertResponseGoAction">
+			<property name="expertqaDAO">
+			<ref local="expertqaDAO" />
+			</property>
+	</bean>		
+	
+	<!--下载中期检查表  download -->
+	
+	<bean id="commitmiddledownloadMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="/commitmiddledownload.do">commitmiddledownloadAction</prop>
+			</props>
+		</property>
+	</bean>	
+	<bean id="commitmiddledownloadAction"
+			class="com.expert.intermediateinspection.CommitmiddleDownloadAction">
+
+			<property name="intermediateinspectionDAO">
+			<ref local="intermediateinspectionDAO" />
+			</property>
+			<property name="coiiDAO">
+			<ref local="coverofintermediateinspectionDAO" />
+			</property>
+			<property name="iiiDAO">
+			<ref local="intermediateinspectioninfoDAO" />
+			</property>
+
+	</bean>			
+	
 	
 	<!--主页新闻加载  -->
 

@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
 
-public class ExpertResponseAction implements Controller{
+import com.hibernate.beans.Expertqa;
+
+public class ExpertResponseGoAction implements Controller{
 
 	ExpertqaDAO expertqaDAO;
 	public ExpertqaDAO getExpertqaDAO() {
@@ -18,9 +20,16 @@ public class ExpertResponseAction implements Controller{
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest arg0,
 			HttpServletResponse arg1) throws Exception {
-		// TODO Auto-generated method stub
-		expertqaDAO.updateAnswer(1, arg0.getParameter("achievement"));
-		return new ModelAndView("expert/responseOverview");
+
+		String ans=arg0.getQueryString();
+		String[] s=ans.split("=");
+		String id=s[1];
+		
+		Expertqa eqa=expertqaDAO.getExpertqabyID(new Integer(id));
+		arg0.setAttribute("ques", eqa.getQdescription());
+		
+		
+		return new ModelAndView("expert/response");
 	}
 
 }

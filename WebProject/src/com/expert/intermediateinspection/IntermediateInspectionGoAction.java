@@ -39,11 +39,11 @@ public class IntermediateInspectionGoAction implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest arg0,
 			HttpServletResponse arg1) throws Exception {
 		// TODO Auto-generated method stub
-		Intermediateinspection ii=intermediateinspectionDAO.getIntermediateinspection(1);//此处以后写好了改一下输入参数
+		Intermediateinspection ii=intermediateinspectionDAO.getIntermediateinspection(1);//此处以后写好了改一下输入参数,参数是中期检查表的主键
 		arg0.setAttribute("ii", ii);
-		Coverofintermediateinspection coii=coiiDAO.getCover(1);
+		Coverofintermediateinspection coii=coiiDAO.getCover(1);//此处以后写好了改一下输入参数,参数是中期检查表的主键
 		arg0.setAttribute("coii", coii);
-		Intermediateinspectioninfo iii=iiiDAO.getiii(1);
+		Intermediateinspectioninfo iii=iiiDAO.getiii(1);//此处以后写好了改一下输入参数,参数是中期检查表的主键
 		arg0.setAttribute("iii", iii);
 		return new ModelAndView("expert/commentmiddle(part)");
 	}

@@ -56,7 +56,7 @@ function checkform(){
 	     							问题内容:
 	     						</div>
 	     						<div style="word-wrap:break-word;word-break:break-all;margin:0 auto;width:80%;">
-	     							<pre style="width:100%;white-space:pre-wrap;"><%=request.getContextPath() %></pre>
+	     							<pre style="width:100%;white-space:pre-wrap;"><%=(String) request.getAttribute("ques") %></pre>
 	     						</div>
 	     					</td>
 	     				</tr>

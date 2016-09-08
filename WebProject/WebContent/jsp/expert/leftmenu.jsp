@@ -60,7 +60,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			"menuid" : "211",
 			"menuname" : "咨询问题回复",
 			"icon" : "icon-nav",
-			"url" : "#"
+			"url" : "<%=request.getContextPath()%>/jsp/expert/responseOverview.jsp"
 		}]
 	}, {
 		"menuid" : "20",

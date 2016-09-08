@@ -1,6 +1,6 @@
 package com.hibernate.beans;
 
-// Generated 2016-9-1 17:16:03 by Hibernate Tools 3.4.0.CR1
+// Generated 2016-9-7 19:03:09 by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
@@ -24,13 +24,6 @@ public class Expertqa implements java.io.Serializable {
 	private Integer roleId;
 
 	public Expertqa() {
-
-		this.qdescription = "";
-		this.field = "";
-		this.adescription = "";
-		this.state = 1;
-		this.fee = "";
-
 	}
 
 	public Expertqa(Integer id, String qdescription, Date qtime, String field,
