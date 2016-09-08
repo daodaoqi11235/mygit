@@ -12,10 +12,12 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 
 public class WordGenerator {
-	private static Configuration configuration = null;
-	private static Map<String, Template> allTemplates = null;
+	private Configuration configuration = null;
+	private Map<String, Template> allTemplates = null;
 	
-	static {
+
+
+	public WordGenerator(String ftlname) {
 		configuration = new Configuration();
 		configuration.setDefaultEncoding("utf-8");
 		configuration.setClassForTemplateLoading(WordGenerator.class, "/com/base/word/ftl");
@@ -25,14 +27,11 @@ public class WordGenerator {
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}
+		}	
 	}
 
-	private WordGenerator() {
-		throw new AssertionError();
-	}
 
-	public static File createDoc(Map<?, ?> dataMap, String type) {
+	public File createDoc(Map<?, ?> dataMap, String type) {
 		String name = "temp" + (int) (Math.random() * 100000) + ".doc";
 		File f = new File(name);
 		Template t = allTemplates.get(type);

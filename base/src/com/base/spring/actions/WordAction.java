@@ -42,7 +42,9 @@ public class WordAction extends SimpleFormController{
 		ServletOutputStream out = null;
 		try {
 			// 调用工具类WordGenerator的createDoc方法生成Word文档
-			file = WordGenerator.createDoc(map, "testword");
+			WordGenerator wg=new WordGenerator("testword");
+
+			file = wg.createDoc(map, "testword");
 			fin = new FileInputStream(file);
 			
 			response.setCharacterEncoding("utf-8");

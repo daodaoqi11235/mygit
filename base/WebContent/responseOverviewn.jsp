@@ -26,14 +26,15 @@ $(function () {
                 nowrap: false,
                 striped: true,
                 collapsible: true,
-                url:'<%=request.getContextPath()%>/loaddatagrid.do',	
+                	
                 pageList: [10, 20,30,50],
                 pageSize: 10,
-                sortName: 'DATE',
+                sortName: 'date',
                 sortOrder: 'asc',
                 remoteSort: true,
                 idField: 'RoleCode',
                 checkOnSelect:false, 
+                method:'get',
                 frozenColumns :[[
 					{field :'ck',checkbox : true}, 
 				]],
@@ -44,7 +45,7 @@ $(function () {
 				{field : 'date',title : '时间',width : 208,align:'center',sortable:true},
 				 { field: 'opt', title: '详情了解', width: 160, align: 'center',
                     formatter: function (value,row,index) {
-                    	return "<a href='<%=request.getContextPath()%>/loaddatagrid.do''>查看详情</a>";  
+                    	return "<a href='<%=request.getContextPath()%>/loaddatagrid.do''>查看详情</a>";
                     }
                 }
               
@@ -67,6 +68,7 @@ $(function () {
         	       		},
                			   
                         success: function (msg) {
+                        	
                         	var result = eval("("+msg+")");
         					
          						$("#roleList").datagrid("loadData",result);
@@ -77,10 +79,38 @@ $(function () {
                     });
                 },
                 onLoadSuccess: function () {
+                	
                     $('.datagrid-toolbar').append($('#txtSearch'));
                     $('#txtSearch').show();
                 }
             });
+            var opts = $('#roleList').datagrid('options');
+        	var page=opts.pageNumber;
+        	var size=opts.pageSize;
+        	var sort=opts.sortName;
+        	var order=opts.sortOrder;
+            $.ajax({
+                url:'<%=request.getContextPath()%>/loaddatagrid.do',
+                data:{"pageNum":page,"pageSize":size,"sort":sort,"order":order},
+                type: 'post',
+                dataType : "text",
+            	error: function(XMLHttpRequest, textStatus, errorThrown) {
+	       			alert(XMLHttpRequest.status);
+	       			alert(XMLHttpRequest.readyState);
+	       			alert(textStatus);
+	       		},
+       			   
+                success: function (msg) {
+                	
+                	var result = eval("("+msg+")");
+					
+ 						$("#roleList").datagrid("loadData",result);
+ 					
+                    
+             
+                }
+            });
+
             
         	$('#roleList').datagrid('getPager').pagination( {
         		pageList: [10, 20,30,50],
@@ -89,32 +119,15 @@ $(function () {
 				afterPageText : '页    共 {pages} 页',
 				displayMsg : '当前显示从{from}到{to}共{total}记录',
 				onBeforeRefresh : function(pageNumber, pageSize) {
-					$('#roleList').datagrid('clearSelections');
+					$('#roleList').datagrid('clearSelections').datagrid("clearChecked");
+					
 				},
 				onSelectPage:function(pageNum, pageSize){
-					var opts = $('#roleList').datagrid('options');
-                	var sort=opts.sortName;
-                	var order=opts.sortOrder;
-					$.ajax({
-                        url:'<%=request.getContextPath()%>/loaddatagrid.do',
-                        data:{"pageNum":pageNum,"pageSize":pageSize,"sort":sort,"order":order},
-                        type: 'post',
-                        dataType : "text",
-                    	error: function(XMLHttpRequest, textStatus, errorThrown) {
-        	       			alert(XMLHttpRequest.status);
-        	       			alert(XMLHttpRequest.readyState);
-        	       			alert(textStatus);
-        	       		},
-               			   
-                        success: function (msg) {
-                        	var result = eval("("+msg+")");
-        					
-         						$("#roleList").datagrid("loadData",result);
-         					
-                            
-                     
-                        }
-                    });
+					var gridOpts = $('#roleList').datagrid('options');
+					gridOpts.pageNumber = pageNum; 
+					gridOpts.pageSize = pageSize;
+
+					getDataUpdate(pageNum, pageSize);
 				}
 				
 
@@ -129,7 +142,27 @@ $(function () {
             }
             return ids.join(',');
         }
-
+		function getDataUpdate(pageNum, pageSize){
+			var opts = $('#roleList').datagrid('options');
+        	var sort=opts.sortName;
+        	var order=opts.sortOrder;
+			$.ajax({
+                url:'<%=request.getContextPath()%>/loaddatagrid.do',
+                data:{"pageNum":pageNum,"pageSize":pageSize,"sort":sort,"order":order},
+                type: 'post',
+                dataType : "text",
+            	error: function(XMLHttpRequest, textStatus, errorThrown) {
+	       			alert(XMLHttpRequest.status);
+	       			alert(XMLHttpRequest.readyState);
+	       			alert(textStatus);
+	       		},
+       			   
+                success: function (msg) {
+                	var result = eval("("+msg+")");
+ 						$("#roleList").datagrid("loadData",result);
+                }
+            });
+		}
         
  </script>
 	

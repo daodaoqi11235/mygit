@@ -1,9 +1,13 @@
 package com.base.spring.actions;
 
+import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
+
+
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,18 +85,28 @@ public class LoadDataGridAction implements Controller{
 			HttpServletResponse arg1) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("datagrid");
-		List from=gdDAO.getAll();
+		
+		String pageNum=arg0.getParameter("pageNum");
+		String pageSize = arg0.getParameter("pageSize");
+		String sort = arg0.getParameter("sort");
+		String order = arg0.getParameter("order");
+		System.out.println(sort);
+		List from=gdDAO.getByPage(pageNum, pageSize, sort, order);
 		List<dg> to=new ArrayList<dg>();
+		
+		System.out.println("数组大小"+from.size());
+		
 		for(int i=0;i<from.size();i++){
 			dg gg=new dg();
 			gg.setdg((Datagrid) from.get(i));
 			to.add(gg);
 		}
+		
 		JSONArray jsonArr = JSONArray.fromObject(to);
 		System.out.println(jsonArr);
 		arg1.setContentType("text/html;charset=UTF-8");  
 		arg1.setCharacterEncoding("UTF-8");  
-		arg1.getWriter().write(jsonArr.toString());
+		arg1.getWriter().write("{\"total\":"+gdDAO.getNum()+",\"rows\":"+jsonArr.toString()+"}");
 		arg1.getWriter().flush();
 		arg1.getWriter().close();
 		return null;
